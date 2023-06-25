@@ -1,0 +1,21 @@
+.login {
+  text-align: center;
+}
+.email {
+  border-radius: 20px;
+}
+.heightinput {
+  margin-top: 12rem;
+}
+.button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 7rem;
+  --box-shadow: none !important;
+  box-shadow: none;
+  background-color: #f8d874;
+  --background-activated: #323278;
+}
+/* .buttonlogin {
+  box-shadow: none;
+} */

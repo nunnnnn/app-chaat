@@ -1,0 +1,25 @@
+.fabbuttonup {
+  margin-top: 4rem;
+  --box-shadow: none;
+  width: 10rem;
+  height: 10rem;
+  margin-left: -3rem;
+
+  --background: trasepantize(100);
+  --background-focused: trasepantize(100);
+  --background-hover: trasepantize(100);
+  --background-activated: trasepantize(100);
+}
+.fabbuttonupicon {
+  width: 10rem;
+  height: 10rem;
+  color: black;
+}
+.detail {
+  height: 14rem;
+}
+.name {
+  border-radius: 1rem;
+}
+.buttonsave {
+}

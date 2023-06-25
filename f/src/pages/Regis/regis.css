@@ -1,0 +1,7 @@
+.me {
+  margin-left: auto;
+  margin-right: auto;
+  --box-shadow: none !important;
+  box-shadow: none;
+  background-color: #f8d874;
+}

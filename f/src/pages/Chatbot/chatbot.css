@@ -1,0 +1,62 @@
+.avatar {
+  margin-top: 1rem;
+}
+.fff {
+  background-color: #fff;
+}
+
+.suggestion-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: fit-content;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  margin: 0.5rem 0.2rem 0.5rem 0.2rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.suggestion-btn:active {
+  background-color: #c03838;
+}
+.imagelink{
+  /* border-right-width: thick; */
+  /* width: 5px; */
+  /* height: auto; */
+}
+.longcrad{
+  /* width: %; */
+  /* height: auto; */
+}
+.imagelink {
+  /* background-repeat: no-repeat; */
+      /* background-size: contain; */
+      margin-right: 24px;
+      max-height: auto;
+      /* max-width: 100%;  */
+      /* padding-right: 1px; */
+}
+
+.link-wrapper {
+  text-decoration: none;
+}
+
+.title {
+  color: black;
+      font-weight: bold;
+}
+
+.subtitle {
+  color: #757575;
+      padding-top: 8px;
+}
+
+.title-card-elements {
+  background-color: white;
+      border-radius: 8px;
+      display: flex;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      padding: 16px;
+}

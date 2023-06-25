@@ -1,0 +1,10 @@
+.fabbutton {
+  margin-top: -1.7rem;
+  margin-right: -1rem;
+  --background: trasepantize(100);
+  /* --background-hover: #fff; */
+  --box-shadow: none;
+  --background-focused: trasepantize(100);
+  --background-hover: trasepantize(100);
+  --background-activated: trasepantize(100);
+}

@@ -38,6 +38,7 @@ import Menustaff from "./components/Menustaff/Menustaff";
 import Chatbot from "./pages/Chatbot/chatbot";
 import Chatroom from "./pages/Chatroom/chatroom"
 import Post from "./pages/Post/post";
+import Postedit from "./pages/Postedit/postedit";
 import Regis from "./pages/Regis/regis";
 import Contact from "./pages/Contact/contact";
 import Feedstaff from "./pages/Feedstaff/feedstaff";
@@ -83,6 +84,9 @@ const App: React.FC = () => {
             <Route path="/Post" exact={true}>
               <Post />
             </Route>
+            {/* <Route path="/Postedit" exact={true}>
+              <Postedit />
+            </Route> */}
             <Route path="/Regis" exact={true}>
               <Regis />
             </Route>
@@ -92,7 +96,7 @@ const App: React.FC = () => {
             <Route path="/Contact" exact={true}>
               <Contact />
             </Route>
-            <Route path="/Feedstaff/" exact={true}>
+            <Route path="/Feedstaff/:id" exact={true}>
               <Feedstaff />
             </Route>
             <Route path="/Editfeed/:id" exact={true}>

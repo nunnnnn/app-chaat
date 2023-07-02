@@ -25,10 +25,12 @@ const LoginPage: React.FC = () => {
   const [present, dismiss] = useIonLoading();
   const [IonToast] = useIonToast();
   const history = useHistory();
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  // const [data, setData] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const showToast = (message: any) => {
     IonToast({
       message: message,
@@ -44,12 +46,20 @@ const LoginPage: React.FC = () => {
     }
   }, []);
 
-  const handleChange = (event: any) => {
-    setData({ ...data, [event.target.name]: [event.target.value] });
+  // const handleChange = (event: any) => {
+  //   setData({ ...data, [event.target.name]: [event.target.value] });
+  // };
+
+  const handleEmailChange = (event: CustomEvent) => {
+    setEmail(event.detail.value);
+  };
+
+  const handlePasswordChange = (event: CustomEvent) => {
+    setPassword(event.detail.value);
   };
 
   const validateForm = () => {
-    const { email, password } = data;
+    // const { email, password } = data;
     if (email === "") {
       showToast("Email and Password is required.");
       return false;
@@ -60,10 +70,12 @@ const LoginPage: React.FC = () => {
     return true;
   };
 
-  const handleLogin = async (event: any) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
-      const { email, password } = data;
+      // const { email, password } = data;
+      // console.log('Email:', email);
+      // console.log('Password:', password);
       present({
         message: "กำลังเข้าสู่ระบบ",
         spinner: "circles",
@@ -81,7 +93,7 @@ const LoginPage: React.FC = () => {
               history.push("/page/ฟีดข่าว");
             } else {
               localStorage.setItem("TID", JSON.stringify(response.data.user));
-              history.push("/page/ฟีดข่าว");
+              history.push("/ฟีดข่าวแอดมิน");
             }
           }
           dismiss();
@@ -120,7 +132,8 @@ const LoginPage: React.FC = () => {
                   type="email"
                   placeholder="อีเมล์"
                   name="email"
-                  onIonChange={handleChange}></IonInput>
+                  onIonChange={handleEmailChange}>
+                  </IonInput>
                 {/* <IonNote slot="helper">Enter a valid email</IonNote>
               <IonNote slot="error">Invalid email</IonNote> */}
               </IonItem>
@@ -133,7 +146,7 @@ const LoginPage: React.FC = () => {
                   type="password"
                   placeholder="รหัสผ่าน"
                   name="password"
-                  onIonChange={handleChange}></IonInput>
+                  onIonChange={handlePasswordChange}></IonInput>
               </IonItem>
             </IonCard>
           </div>

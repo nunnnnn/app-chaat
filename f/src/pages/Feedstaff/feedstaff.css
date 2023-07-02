@@ -1,3 +1,10 @@
 .color {
   background-color: #fff;
+  border: #121258;
+  padding: 2px;
+  background: none;
+}
+.size{
+  padding: 7px;
+  background: none;
 }

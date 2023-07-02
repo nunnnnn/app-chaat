@@ -1,115 +1,3 @@
-// import {
-//   IonFab,
-//   IonFabButton,
-//   IonIcon,
-//   IonPage,
-//   IonCard,
-//   IonCardContent,
-//   IonCardHeader,
-//   IonCardSubtitle,
-//   IonCardTitle,
-//   IonContent,
-//   IonButton,
-//   IonToolbar,
-//   IonButtons,
-//   IonTitle,
-//   useIonAlert,
-// } from "@ionic/react";
-// import React, { useEffect, useState } from "react";
-// import { pencil, trash } from "ionicons/icons";
-// import "./feedstaff.css";
-// import Appbarstaff from "../../components/Appbarstaff/Appbarstaff";
-// import API from "../../api/useApi";
-
-// const Feedstaff: React.FC = () => {
-//   const [presentAlert] = useIonAlert();
-//   const [handlerMessage, setHandlerMessage] = useState("");
-//   const [roleMessage, setRoleMessage] = useState("");
-
-//   const [post, setPost] = useState([]);
-
-//   useEffect(() => {
-//     API.get("/post").then((response) => {
-//       setPost(
-//         response.data.filter(
-//           (v: any) =>
-//             v.teacher_id === JSON.parse(String(localStorage.getItem("TID")))._id
-//         )
-//       );
-//     });
-//   }, []);
-
-//   return (
-//     <IonPage>
-//       <Appbarstaff />
-//       <IonContent fullscreen color="secondary">
-//         {post &&
-//           post.map((item: any) => (
-//             <IonCard>
-//               <img
-//                 alt="Silhouette of mountains"
-//                 src={item.image}
-//                 style={{ height: "60vmin" }}
-//               />
-//               <IonCardHeader>
-//                 <IonCardTitle>หัวข้อเรื่อง: {item.title}</IonCardTitle>
-//                 <IonCardTitle>สาขา: {item.branch}</IonCardTitle>
-//               </IonCardHeader>
-
-//               <IonCardContent>
-//                 <IonToolbar mode="md">
-//                   <IonButtons slot="secondary">
-//                     <IonButton className="color">
-//                       <IonIcon
-//                         slot="icon-only"
-//                         style={{ color: "#364AAF" }}
-//                         icon={pencil}></IonIcon>
-//                     </IonButton>
-//                   </IonButtons>
-//                   <IonButtons slot="primary">
-//                     <IonButton
-//                       className="color"
-//                       onClick={() =>
-//                         presentAlert({
-//                           header: "ลบใช่หรือไม่!",
-//                           buttons: [
-//                             {
-//                               text: "ยกเลิก",
-//                               role: "cancel",
-//                               handler: () => {
-//                                 setHandlerMessage("Alert canceled");
-//                               },
-//                             },
-//                             {
-//                               text: "ลบ",
-//                               role: "confirm",
-//                               handler: () => {
-//                                 setHandlerMessage("Alert confirmed");
-//                               },
-//                             },
-//                           ],
-//                           onDidDismiss: (e: CustomEvent) =>
-//                             setRoleMessage(
-//                               `Dismissed with role: ${e.detail.role}`
-//                             ),
-//                         })
-//                       }>
-//                       <IonIcon
-//                         slot="icon-only"
-//                         style={{ color: "red" }}
-//                         icon={trash}></IonIcon>
-//                     </IonButton>
-//                   </IonButtons>
-//                 </IonToolbar>
-//               </IonCardContent>
-//             </IonCard>
-//           ))}
-//       </IonContent>
-//     </IonPage>
-//   );
-// };
-// export default Feedstaff;
-
 import {
   IonIcon,
   IonPage,
@@ -122,10 +10,11 @@ import {
   IonToolbar,
   IonButtons,
   useIonAlert,
+  useIonLoading
 } from "@ionic/react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { pencil, trash } from "ionicons/icons";
+import { create, trash } from "ionicons/icons";
 import "./feedstaff.css";
 import Appbarstaff from "../../components/Appbarstaff/Appbarstaff";
 import API from "../../api/useApi";
@@ -134,30 +23,48 @@ const Feedstaff: React.FC = () => {
   const [presentAlert] = useIonAlert();
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
-  const [post, setPost] = useState([]);
-  const [data,setData] = useState <any>();
-  // const {} = useParams();
+  const [present, dismiss] = useIonLoading();
 
+  const [post, setPost] =  useState<any[]>([]);
+  // const [postID, setPostID] = useState({
+  //   image: "",
+  //   title: "",
+  //   branch: "",
+  //   attach_link:"",
+  //   detail: "",
+  // });
+
+  // const [data,setData] = useState <any>();
+  const history = useHistory();
+  // const {} = useParams();
   useEffect(() => {
     API.get("/post").then((response) => {
-      setPost(
-        response.data.filter(
-          (v: any) =>
-            v.teacher_id === JSON.parse(String(localStorage.getItem("TID")))._id
-        )
-      );
+      // setPost(
+      //   response.data.filter(
+      //     (v: any) =>
+      //       v.teacher_id === JSON.parse(String(localStorage.getItem("TID")))._id
+      //   )
+      // );
+      setPost(response.data);
     });
-  }, []);
+  }, [present, dismiss]);
 
-  // const click = async(event:any) => {
-  //   if (localStorage.getItem("TID")) {
-  //     const id = JSON.parse(localStorage.getItem("TID")!)._id;
-  //     API.get(`/post/${id}`).then((response) => {
-  //       setData(response.data);
-  //     });
-  //   }
-  //   console.log('Card clicked')
+  const viewDetail = (id: string) => {
+    history.push(`/detail/${id}`);
+  };
 
+  const editpost  = (id: string)=> {
+    history.push(`/page/แก้ไขโพสต์/${id}`);
+    console.log('Edit post:', post);
+  }
+
+  // const editpost  = (post: any)=> {
+  //   history.push(`/page/แก้ไขโพสต์/`);
+  //   console.log('Edit post:', post);
+  // }
+
+  // const handleChange = (event: any) => {
+  //   setPostID({ ...postID, [event.target.name]: event.target.value });
   // };
 
   return (
@@ -165,62 +72,57 @@ const Feedstaff: React.FC = () => {
       <Appbarstaff />
       <IonContent fullscreen color="secondary">
         {post &&
-          post.map((item: any) => (
-            <IonCard  >
+          post  
+          .slice(0)
+          .reverse().map((post: any) => (
+            <IonCard key={post.id} >
               <div >
               <img
                 alt="Silhouette of mountains"
-                src={item.image}
-                style={{ height: "60vmin" }}
+                src={post.image}
+                style={{height: "100%",width: "100%" }}
               />
-              <IonCardHeader>
-                <IonCardTitle>หัวข้อเรื่อง: {item.title}</IonCardTitle>
-                <IonCardTitle>สาขา: {item.branch}</IonCardTitle>
+              <IonCardHeader onClick={() => viewDetail(post._id)}>
+                <IonCardTitle className="texttitle">หัวข้อเรื่อง: {post.title}</IonCardTitle>
+                <IonCardTitle style={{ fontSize: "1rem" }}>สาขา: {post.branch}</IonCardTitle>
               </IonCardHeader>
 
               <IonCardContent>
                 <IonToolbar mode="md">
-                  <IonButtons slot="secondary"  >
-                    <IonButton className="color">
+                  <IonButtons className="size"slot="secondary" onClick={() => editpost (post._id)} >
+                    <IonButton style={{ background:"none"}}>
                       <IonIcon
                         slot="icon-only"
-                        style={{ color: "#364AAF" }}
-                        icon={pencil}
+                        style={{  }}
+                        icon={create}
                       ></IonIcon>
                     </IonButton>
                   </IonButtons>
-                  <IonButtons slot="primary">
-                    <IonButton
-                      className="color"
-                      onClick={() =>
+                  <IonButtons className="size" slot="primary">
+                    <IonButton style={{ background:"none"}}
+                       onClick={() =>
                         presentAlert({
-                          header: "ลบใช่หรือไม่!",
+                          cssClass: "my-css",
+                          header: "การยืนยัน",
+                          message: "คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?",
                           buttons: [
                             {
                               text: "ยกเลิก",
                               role: "cancel",
-                              handler: () => {
-                                setHandlerMessage("Alert canceled");
-                              },
                             },
                             {
                               text: "ลบ",
-                              role: "confirm",
-                              handler: () => {
-                                setHandlerMessage("Alert confirmed");
-                              },
+                              handler: () => console.log("Delete clicked"),
                             },
                           ],
-                          onDidDismiss: (e: CustomEvent) =>
-                            setRoleMessage(
-                              `Dismissed with role: ${e.detail.role}`
-                            ),
                         })
                       }
+                      // onClick={() => handleDeletePost(postId.id)}
                     >
                       <IonIcon
                         slot="icon-only"
-                        style={{ color: "red" }}
+                        // className="size"
+                        style={{ background:"none"}}
                         icon={trash}
                       ></IonIcon>
                     </IonButton>

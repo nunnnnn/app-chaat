@@ -52,10 +52,10 @@ const Regis: React.FC = () => {
   const handleValidation = () => {
     const { surname, email, password } = inputs;
     if (surname.length < 3) {
-      showToast("Username should be greater than 3 characters.");
+      showToast("ชื่อผู้ใช้ควรมีความยาวมากกว่า 3 ตัวอักษร");
       return false;
     } else if (password.length < 8) {
-      showToast("Password should be equal or greater than 8 characters.");
+      showToast("รหัสผ่านควรมีความยาวเท่ากับหรือมากกว่า 8 ตัวอักษร");
       return false;
     } else if (email === "") {
       showToast("Email is required.");

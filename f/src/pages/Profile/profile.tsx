@@ -23,11 +23,7 @@ import { Filesystem } from "@capacitor/filesystem";
 import API from "../../api/useApi";
 
 const Profile: React.FC = () => {
-  // const [presentAlert] = useIonAlert();
-  // const [handlerMessage, setHandlerMessage] = useState("");
-  // const [roleMessage, setRoleMessage] = useState("");
   const [img, setImg] = useState<any>();
-  // const history = useHistory();
   const [data, setData] = useState({
     surname: "",
     lastname: "",

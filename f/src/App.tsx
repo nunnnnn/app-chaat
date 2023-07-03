@@ -84,9 +84,9 @@ const App: React.FC = () => {
             <Route path="/Post" exact={true}>
               <Post />
             </Route>
-            {/* <Route path="/Postedit" exact={true}>
+            <Route path="/แก้ไขโพสต์/:id" exact={true}>
               <Postedit />
-            </Route> */}
+            </Route>
             <Route path="/Regis" exact={true}>
               <Regis />
             </Route>
@@ -96,7 +96,7 @@ const App: React.FC = () => {
             <Route path="/Contact" exact={true}>
               <Contact />
             </Route>
-            <Route path="/Feedstaff/:id" exact={true}>
+            <Route path="/Feedstaff" exact={true}>
               <Feedstaff />
             </Route>
             <Route path="/Editfeed/:id" exact={true}>

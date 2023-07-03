@@ -51,7 +51,7 @@ const Profileedit: React.FC = () => {
         {profile && (
           <div className="color" style={{background:"	rgb(0 0 204 / 20%)",boxShadow:"#323278 5px 5px, #30308d 10px 10px, 15px 15px" , }} >
             <h2 className="profilename">ชื่อ : {profile.name}</h2>
-            <h2>โรงเรียน : 
+            <h2> 
               {profile.school
                 ? "โรงเรียน" + profile.school
                 : "มหาวิทยาลัยอุบลราชธานี"}

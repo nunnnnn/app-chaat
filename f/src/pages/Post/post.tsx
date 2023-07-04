@@ -73,12 +73,15 @@ const Post: React.FC = () => {
   };
 
   const handleValidation = () => {
-    const { branch, detail, title } = text;
-    if (title === "") {
+    const { image,branch, detail, title } = text;
+    if (image === "") {
+      showToast("จำเป็นต้องใส่รูปภาพ.");
+      return false;
+    }else if (title === "") {
       showToast("จำเป็นต้องระบุหัวข้อเรื่อง.");
       return false;
     } else if (branch === "") {
-      showToast("จำเป็นต้องระบุสาขา.");
+      showToast("จำเป็นต้องระบุ.");
       return false;
     } else if (detail === "") {
       showToast("จำเป็นต้องระบุรายละเอียด.");
@@ -194,6 +197,9 @@ const Post: React.FC = () => {
                   </IonSelectOption>
                   <IonSelectOption value="สาขาวิชาเทคโนโลยียางและพอลิเมอร์">
                     สาขาวิชาเทคโนโลยียางและพอลิเมอร์
+                  </IonSelectOption>
+                  <IonSelectOption value="ทุกสาขา">
+                    ทุกสาขา
                   </IonSelectOption>
                 </IonSelect>
               </IonItem>

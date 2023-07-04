@@ -5,7 +5,7 @@ import {
   IonFooter,
   IonCard,
   IonRow,
-  IonCol
+  IonCol,
 } from "@ionic/react";
 import Appbar from "../../components/Appbar/Appbar";
 import React, { useState, useRef, useEffect } from "react";
@@ -16,8 +16,7 @@ const suggestions = [
   "เกี่ยวกับmytcasc",
   "กฎ",
   "หอพักหอใน",
-  "ปริญญาตรีมีกี่สาขา"
-
+  "ปริญญาตรีมีกี่สาขา",
 ];
 
 const Chactbot: React.FC = () => {
@@ -39,13 +38,12 @@ const Chactbot: React.FC = () => {
       const payload = {
         query_input: {
           text: {
-            
             text: text,
             language_code: "th-TH",
           },
         },
       };
-      setDetails([]);
+      // setDetails([]);
       axios
         .post(
           `https://dialogflow.googleapis.com/v2/projects/${project_id}/agent/sessions/${session_id}:detectIntent`,
@@ -58,8 +56,7 @@ const Chactbot: React.FC = () => {
             },
           }
         )
-        .then((res: any) =>
-        {
+        .then((res: any) => {
           setMessages((prev: any) => [
             ...prev,
             {
@@ -72,28 +69,25 @@ const Chactbot: React.FC = () => {
 
           for (const item of res.data.queryResult.fulfillmentMessages) {
             if (item.payload && Array.isArray(item.payload.richContent)) {
-              console.log("payload",item.payload.richContent);
-              var payloadContent = item.payload.richContent
-            }
-            else{
-              continue
+              console.log("payload", item.payload.richContent);
+              var payloadContent = item.payload.richContent;
+            } else {
+              continue;
             }
           }
           // console.log(payload)
-        
+
           setDetails((prev: any) => [
             ...prev,
             // res.data.queryResult.fulfillmentMessages[1].payload.richContent
-            payloadContent
-          ])
+            payloadContent,
+          ]);
           // console.log(res.data.queryResult.fulfillmentMessages[0].payload.richContent);
-        }
-      ); 
+        });
     }
   };
 
-  console.log("deeet",details);
-
+  console.log("deeet", details);
 
   useEffect(() => {
     axios
@@ -106,44 +100,57 @@ const Chactbot: React.FC = () => {
       <Appbar />
       <IonContent fullscreen color="secondary">
         {messages.map((mes: any, index: number) => (
-
           <div className={`chat chat-${mes.fromself}`} key={index}>
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/192/192/people" />
+                <img src="https://placeimg.com/192/192/people" /> {/*ไม่มีรูปในเว็บ */}
               </div>
             </div>
-            
+
             <div className="chat-header">
               {mes.name}
               <time className="text-xs opacity-50"></time>
             </div>
 
-            <div className="chat-bubble">{mes.messages}<div>
-            </div>
-            {details.map((det: any, indexx: number) => (
-              <div className="link-wrapper  " key={indexx}>
-                {det.map((detai: any, indexxx: number) => (
-                  <div className="link-wrapper  " key={indexxx}>
-                    {detai.map((detail: any, indexxxx: number) => (
-                    <div className="link-wrapper  " key={indexxxx}>
-                      <IonCard href={detail.actionLink} target="_blank" >
-                        <IonRow >
-                          <IonCol className=""><img src={detail.image?.src?.rawUrl || ""} /></IonCol>
-                          <IonCol className="title">{detail.title}</IonCol>
-                        </IonRow>
-                        <IonRow>
-                          <IonCol className="subtitle">{detail.subtitle}</IonCol>
-                        </IonRow>
-                      </IonCard>
+            <div className="chat-bubble">
+              {mes.messages}
+
+              {mes.name == "bot" ? (
+                <div>
+                  {details.map((det: any, indexx: number) => (
+                    <div className="link-wrapper  " key={indexx}>
+                      {det.map((detai: any, indexxx: number) => (
+                        <div className="link-wrapper  " key={indexxx}>
+                          {detai.map((detail: any, indexxxx: number) => (
+                            <div className="link-wrapper  " key={indexxxx}>
+                              <IonCard href={detail.actionLink} target="_blank">
+                                <IonRow>
+                                  <IonCol className="">
+                                    <img
+                                      src={detail.image?.src?.rawUrl || ""}
+                                    />
+                                  </IonCol>
+                                  <IonCol className="title">
+                                    {detail.title}
+                                  </IonCol>
+                                </IonRow>
+                                <IonRow>
+                                  <IonCol className="subtitle">
+                                    {detail.subtitle}
+                                  </IonCol>
+                                </IonRow>
+                              </IonCard>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
                     </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ))}
-              <div >
-              {/* <IonCard href="https://www.mytcas.com/" >
+                  ))}
+                </div>
+              ) : (<div></div>) }
+
+              <div>
+                {/* <IonCard href="https://www.mytcas.com/" >
                 <IonRow>
                   <IonCol className=""><img src="https://placeimg.com/192/192/people" /></IonCol>
                   <IonCol className="title">หัวข้อเรื่ิองงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง</IonCol>
@@ -154,11 +161,9 @@ const Chactbot: React.FC = () => {
               </IonCard> */}
               </div>
             </div>
-            
+
             {/* <div className="chat-footer opacity-50">Delivered</div> */}
           </div>
-          
-         
         ))}
       </IonContent>
       <IonFooter>
@@ -167,14 +172,16 @@ const Chactbot: React.FC = () => {
             display: "flex",
             flexDirection: "row",
             overflowX: "scroll",
-          }}>
+          }}
+        >
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
               className="suggestion-btn"
               onClick={(e) =>
                 msg.current ? (msg.current.value = suggestion) : ""
-              }>
+              }
+            >
               {suggestion}
             </div>
           ))}
@@ -195,11 +202,13 @@ const Chactbot: React.FC = () => {
             <button
               className="btn btn-square"
               onClick={send}
-              style={{ borderRadius: "0rem" }}>
+              style={{ borderRadius: "0rem" }}
+            >
               <IonIcon
                 size="large"
                 color="light"
-                icon="navigate-circle"></IonIcon>
+                icon="navigate-circle"
+              ></IonIcon>
             </button>
           </div>
         </div>
@@ -208,4 +217,3 @@ const Chactbot: React.FC = () => {
   );
 };
 export default Chactbot;
-

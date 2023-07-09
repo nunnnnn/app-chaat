@@ -24,7 +24,7 @@ import {
   import { useBack } from "../../api/stor";
   import "./chatController.css"
   
-  const ChatController: React.FC = () => {
+  const Chatcontroller: React.FC = () => {
     const history = useHistory();
     const params: any = useParams();
     const [currentUser, setCurrentUser] = useState<any>();
@@ -221,7 +221,5 @@ import {
     );
   };
   
-  export default ChatController;
-
-
+  export default Chatcontroller;
 

@@ -59,14 +59,14 @@ const studentPages: AppPage[] = [
     mdIcon: home,
   },
   {
-    title: "ฝากข้อความ ",
+    title: "ฝากข้อความ",
     url: "/page/ฝากข้อความ",
     iosIcon: chatbubbleEllipses,
     mdIcon: chatbubbleEllipses,
   },
   {
     title: "แชทตอบอัตโนมัติ",
-    url: "/Chatbot",
+    url: "/page/แชทตอบอัตโนมัติ",
     iosIcon: logoWechat,
     mdIcon: logoWechat,
   },

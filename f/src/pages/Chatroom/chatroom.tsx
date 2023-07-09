@@ -24,7 +24,7 @@ import {
   import { useBack } from "../../api/stor";
   import "./chatroom.css"
   
-  const ChatController: React.FC = () => {
+  const Chatroom: React.FC = () => {
     const history = useHistory();
     const params: any = useParams();
     const [currentUser, setCurrentUser] = useState<any>();
@@ -212,7 +212,90 @@ import {
     );
   };
   
-  export default ChatController;
+  export default Chatroom;
 
 
+// import React, { useEffect, useRef, useState } from "react";
+// import { io } from "socket.io-client";
+// import { useHistory, useParams } from "react-router-dom";
+
+// const ChatRoom: React.FC = () => {
+//   const history = useHistory();
+//   const params: any = useParams();
+//   const [admin, setAdmin] = useState<any>();
+//   const socket: any = useRef();
+//   const [messages, setMessages] = useState<any[]>([]);
+//   const [input, setInput] = useState<string>("");
+
+//   const scrollToBottom = () => {
+//     const chatContainer = document.getElementById("chat-container");
+//     if (chatContainer) {
+//       chatContainer.scrollTop = chatContainer.scrollHeight;
+//     }
+//   };
+
+//   const handleSendMessage = () => {
+//     if (input.trim() !== "") {
+//       const message = {
+//         sender: admin.id,
+//         receiver: params.studentId,
+//         text: input.trim(),
+//       };
+
+//       socket.current.emit("send-message", message);
+
+//       setMessages((prevMessages) => [...prevMessages, message]);
+//       setInput("");
+//     }
+//   };
+
+//   useEffect(() => {
+//     const adminId = localStorage.getItem("adminId");
+//     if (!adminId) {
+//       history.push("/admin-login"); // Redirect to admin login if adminId is not found
+//     } else {
+//       setAdmin({ id: adminId });
+//     }
+//   }, [history]);
+
+//   useEffect(() => {
+//     socket.current = io("http://localhost:7000");
+
+//     socket.current.on("connect", () => {
+//       console.log("Admin connected to chat");
+//     });
+
+//     socket.current.on("receive-message", (message: any) => {
+//       setMessages((prevMessages) => [...prevMessages, message]);
+//       scrollToBottom();
+//     });
+
+//     return () => {
+//       socket.current.disconnect();
+//     };
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Admin Chat</h1>
+//       <div id="chat-container">
+//         {messages.map((message, index) => (
+//           <div key={index}>
+//             <p>{message.text}</p>
+//           </div>
+//         ))}
+//       </div>
+//       <div>
+//         <input
+//           type="text"
+//           value={input}
+//           onChange={(e) => setInput(e.target.value)}
+//         />
+//         <button onClick={handleSendMessage}>Send</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ChatRoom;
 

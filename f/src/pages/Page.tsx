@@ -40,6 +40,9 @@ import Appbarstaff from "../components/Appbarstaff/Appbarstaff";
 import "./Page.css";
 import Post from "./Post/post";
 import Contact from "./Contact/contact";
+import Chactbot from "./Chatbot/chatbot";
+import Chatroom from "./Chatroom/chatroom";
+import Chatcontroller from "./ChatController/chatController";
 // import Postedit from "./Postedit/postedit";
 
 const Page: React.FC = () => {
@@ -54,8 +57,13 @@ const Page: React.FC = () => {
         {name === "ฟีดข่าว" && <Feed />}
         {name === "ฟีดข่าวแอดมิน" && <Feedstaff />}
         {name === "โพสต์" && <Post />}
-        {/* {name === "แก้ไขโพสต์" && <Postedit />} */}
         {name === "ติดต่อเรา" && <Contact />}
+        {name === "แชทตอบอัตโนมัติ" && <Chactbot />}
+        {name === "ฝากข้อความ" && <Chatroom />}
+        {/* {name === "ตอบกลับข้อความ" && <Chatroom />} */}
+
+
+
       </IonContent>
     </IonPage>
   );

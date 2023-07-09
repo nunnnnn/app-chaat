@@ -19,7 +19,7 @@ import "./profile.css";
 // import ExploreContainer from "../../components/ExploreContainer";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { Filesystem } from "@capacitor/filesystem";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import API from "../../api/useApi";
 
 const Profile: React.FC = () => {
@@ -33,6 +33,7 @@ const Profile: React.FC = () => {
   
   const [profile, setProfile] = useState<any>();
   const [present, dismiss] = useIonLoading();
+  const history = useHistory();
 
   useEffect(() => {
     if (localStorage.getItem("TID")) {
@@ -87,7 +88,11 @@ const Profile: React.FC = () => {
     });
     API.put(`/teacher/${id}`, data).then((response) => {
       dismiss();
+      
     });
+    
+    history.push("/profileedit");
+    window.location.reload();
   };
  
 

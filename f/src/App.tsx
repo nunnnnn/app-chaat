@@ -121,11 +121,8 @@ const App: React.FC = () => {
               <Chatroom />
             </Route>
             <Route path="/Appbar" exact={true}>
-              <Chatroom />
+              <Appbar />
             </Route>
-            {/* <Route path="ChatController" exact={true}>
-              <ChatController />
-            </Route> */}
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

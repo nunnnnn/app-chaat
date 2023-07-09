@@ -17,6 +17,7 @@ const suggestions = [
   "กฎ",
   "หอพักหอใน",
   "ปริญญาตรีมีกี่สาขา",
+  "คำถามที่พบบ่อย"
 ];
 
 const Chactbot: React.FC = () => {
@@ -26,10 +27,15 @@ const Chactbot: React.FC = () => {
   const project_id = "chatbot-ubu-science-entry-xpri";
   const session_id = "xxsw555";
   const msg = useRef<HTMLInputElement | null>(null);
+  const [textHistory, setTextHistory] = useState<string[]>([]);
 
   const send = () => {
     if (msg.current?.value) {
       const text = msg.current?.value;
+
+      setTextHistory((prevHistory) => [...prevHistory, text]);
+      console.log("text", text);
+
       msg.current.value = "";
       setMessages((prev: any) => [
         ...prev,
@@ -43,7 +49,7 @@ const Chactbot: React.FC = () => {
           },
         },
       };
-      // setDetails([]);
+
       axios
         .post(
           `https://dialogflow.googleapis.com/v2/projects/${project_id}/agent/sessions/${session_id}:detectIntent`,
@@ -64,6 +70,7 @@ const Chactbot: React.FC = () => {
               name: "bot",
               time: new Date(),
               fromself: "start",
+              text: text,
             },
           ]);
 
@@ -77,17 +84,24 @@ const Chactbot: React.FC = () => {
           }
           // console.log(payload)
 
-          setDetails((prev: any) => [
-            ...prev,
-            // res.data.queryResult.fulfillmentMessages[1].payload.richContent
-            payloadContent,
-          ]);
+          if (textHistory.includes(text)) {
+            console.log("Do the next steps here");
+          } else {
+            setDetails((prev: any) => [
+              ...prev,
+              {
+                payload: payloadContent,
+                messages: text,
+              },
+            ]);
+            console.log("text", text);
+          }
           // console.log(res.data.queryResult.fulfillmentMessages[0].payload.richContent);
         });
     }
   };
 
-  console.log("deeet", details);
+  // console.log("detail", details);
 
   useEffect(() => {
     axios
@@ -103,7 +117,8 @@ const Chactbot: React.FC = () => {
           <div className={`chat chat-${mes.fromself}`} key={index}>
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/192/192/people" /> {/*ไม่มีรูปในเว็บ */}
+                <img src="https://placeimg.com/192/192/people" />{" "}
+                {/*ไม่มีรูปในเว็บ */}
               </div>
             </div>
 
@@ -118,36 +133,57 @@ const Chactbot: React.FC = () => {
               {mes.name == "bot" ? (
                 <div>
                   {details.map((det: any, indexx: number) => (
+                    // console.log('payload',det.payload),
                     <div className="link-wrapper  " key={indexx}>
-                      {det.map((detai: any, indexxx: number) => (
-                        <div className="link-wrapper  " key={indexxx}>
-                          {detai.map((detail: any, indexxxx: number) => (
-                            <div className="link-wrapper  " key={indexxxx}>
-                              <IonCard href={detail.actionLink} target="_blank">
-                                <IonRow>
-                                  <IonCol className="">
-                                    <img
-                                      src={detail.image?.src?.rawUrl || ""}
-                                    />
-                                  </IonCol>
-                                  <IonCol className="title">
-                                    {detail.title}
-                                  </IonCol>
-                                </IonRow>
-                                <IonRow>
-                                  <IonCol className="subtitle">
-                                    {detail.subtitle}
-                                  </IonCol>
-                                </IonRow>
-                              </IonCard>
-                            </div>
-                          ))}
+                      {/* <p>{det.messages}</p> */}
+                      {det.messages && det.messages == mes.text && (
+                        <div>
+                          {det.payload &&
+                            det.payload.map((dett: any, indx: number) => (
+                              <div key={indx}>
+                                {dett.map((detail: any, indexxx: number) => (
+                                  <div className="link-wrapper  " key={indexxx}>
+                                    {/* {detai.map((detail: any, indexxxx: number) => (
+                                <div className="link-wrapper  " key={indexxxx}> */}
+                                    {detail.type && detail.type == "info" && (
+                                      <IonCard
+                                        href={detail.actionLink}
+                                        target="_blank"
+                                      >
+                                        <IonRow>
+                                          <IonCol className="">
+                                            <img
+                                              src={
+                                                detail.image?.src?.rawUrl || ""
+                                              }
+                                            />
+                                          </IonCol>
+                                          <IonCol className="title">
+                                            {detail.title}
+                                          </IonCol>
+                                        </IonRow>
+                                        <IonRow>
+                                          <IonCol className="subtitle">
+                                            {detail.subtitle}
+                                          </IonCol>
+                                        </IonRow>
+                                      </IonCard>
+                                    )}
+
+                                    {/* </div>
+                              ))} */}
+                                  </div>
+                                ))}
+                              </div>
+                            ))}
                         </div>
-                      ))}
+                      )}
                     </div>
                   ))}
                 </div>
-              ) : (<div></div>) }
+              ) : (
+                <div></div>
+              )}
 
               <div>
                 {/* <IonCard href="https://www.mytcas.com/" >
@@ -217,3 +253,4 @@ const Chactbot: React.FC = () => {
   );
 };
 export default Chactbot;
+

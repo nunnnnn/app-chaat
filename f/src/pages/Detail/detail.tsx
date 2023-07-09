@@ -64,7 +64,13 @@ const Detail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                 <IonCol className="long"><h5>ลิ้งค์ :</h5></IonCol>
-                <IonCol><h5>{cards.attach_link}</h5></IonCol>
+                <IonCol>
+                  <h5>
+                  <a href={cards.attach_link} target="_blank" rel="noopener noreferrer">
+                          {cards.attach_link}
+                  </a>
+                  </h5>
+                </IonCol>
                 </IonRow>         
               
                 <IonGrid>

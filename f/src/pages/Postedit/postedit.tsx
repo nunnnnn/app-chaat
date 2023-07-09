@@ -117,25 +117,6 @@ const Postedit: React.FC = () => {
       title: event.target.value,
     }));
   };
-
-  // const handleChange = async (event: any) => {
-  //   console.log(event.target.name)
-  //   setText({
-  //     ...text,
-  //     image: event.target.name == "image" ? event.target.value : text.image,
-  //     branch: event.target.name == "branch" ? event.target.value : data.branch,
-  //     detail:
-  //       event.target.name == "detail" && event.target.value
-  //         ? event.target.value
-  //         : data.detail,
-  //     attach_link:
-  //       event.target.name == "attach_link"
-  //         ? event.target.value
-  //         : data.attach_link,
-  //     title: event.target.name == "title" ? event.target.value : data.title,
-  //   });
-  // };
-
   const handleValidation = () => {
     const { branch, detail, title } = text;
     if (title === "") {

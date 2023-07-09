@@ -41,15 +41,15 @@ import {
     };
   
     const mounted = async () => {
-      if (!localStorage.getItem("It's me")) {
+      if (!localStorage.getItem("SID")) {
         history.push("/");
       } else {
-        setCurrentUser(await JSON.parse(localStorage.getItem("It's me")!));
+        setCurrentUser(await JSON.parse(localStorage.getItem("SID")!));
       }
     };
   
     const receivedMessage = async () => {
-      const data = await JSON.parse(localStorage.getItem("It's me")!);
+      const data = await JSON.parse(localStorage.getItem("SID")!);
       const response = await API.post(`/messages/getmsg`, {
         from: data._id,
         to: JSON.parse(params.param)._id,
@@ -63,7 +63,7 @@ import {
     };
   
     const handleSendMsg = async (msg: any) => {
-      const data = await JSON.parse(localStorage.getItem("It's me")!);
+      const data = await JSON.parse(localStorage.getItem("SID")!);
       socket.current.emit("send-msg", {
         to: JSON.parse(params.param)._id,
         from: data._id,
@@ -90,7 +90,7 @@ import {
   
     const getCurrentChat = async () => {
       if (JSON.parse(params.param)) {
-        await JSON.parse(localStorage.getItem("It's me")!)._id;
+        await JSON.parse(localStorage.getItem("SID")!)._id;
       }
     };
   

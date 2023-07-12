@@ -24,6 +24,29 @@ module.exports.getMessages = async (req, res, next) => {
     next(ex);
   }
 };
+
+module.exports.getLatestMessages = async (req, res, next) => {
+  try {
+    // const { from, to } = req.body;
+
+    // const messages = await Messages.find().sort({ createdAt: 1 });
+    const messages = await Messages.aggregate([
+      { $sort: { createdAt: -1 } },
+      { $group: {
+        _id: "$sender",
+        latestCreatedAt: { $first: "$createdAt" },
+        message: { $first: "$message" },
+        users: { $first: "$users" },
+        isRead: { $first: "$isRead" },
+        updatedAt: { $first: "$updatedAt" },
+        __v: { $first: "$__v" }
+      }}
+    ]);
+    res.json(messages);
+  } catch (ex) {
+    next(ex);
+  }
+};
 // ส่งข้อความ
 module.exports.addMessage = async (req, res, next) => {
   try {

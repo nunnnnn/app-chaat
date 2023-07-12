@@ -50,6 +50,7 @@ module.exports.updateTeacherById = async (req, res, next) => {
       {
         name: `${surname} ${lastname}`,
         avatar,
+        
       }
     );
     return res.json({ status: 200, msg: "Update success!" });

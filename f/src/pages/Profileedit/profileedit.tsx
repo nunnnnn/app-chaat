@@ -11,26 +11,52 @@ import Appbar from "../../components/Appbar/Appbar";
 import React, { useEffect, useState } from "react";
 import "./profileedit.css";
 import API from "../../api/useApi";
+import { useHistory } from "react-router-dom";
+
 
 const Profileedit: React.FC = () => {
   const [profile, setProfile] = useState<any>();
   const [showLoading, setShowLoading] = useState(false);
+  const history = useHistory();
+
+
   useEffect(() => {
     setProfile(true);
-    if (localStorage.getItem("TID")) {
-      const id = JSON.parse(localStorage.getItem("TID")!)._id;
-      API.get(`/teacher/${id}`).then((response) => {
-        setProfile(response.data);
-        setShowLoading(false);
-      });
+    const updatedData = history.location.state; // ดึงข้อมูลที่ถูกส่งมาจากหน้า Profile
+    if (updatedData) {
+      setProfile(updatedData);
     } else {
-      const id = JSON.parse(localStorage.getItem("SID")!)._id;
-      API.get(`/student/${id}`).then((response) => {
-        setProfile(response.data);
-        setShowLoading(false);
-      });
+      if (localStorage.getItem("TID")) {
+        const id = JSON.parse(localStorage.getItem("TID")!)._id;
+        API.get(`/teacher/${id}`).then((response) => {
+          setProfile(response.data);
+          setShowLoading(false);
+        });
+      } else {
+        const id = JSON.parse(localStorage.getItem("SID")!)._id;
+        API.get(`/student/${id}`).then((response) => {
+          setProfile(response.data);
+          setShowLoading(false);
+        });
+      }
     }
   }, []);
+  // useEffect(() => {
+  //   setProfile(true);
+  //   if (localStorage.getItem("TID")) {
+  //     const id = JSON.parse(localStorage.getItem("TID")!)._id;
+  //     API.get(`/teacher/${id}`).then((response) => {
+  //       setProfile(response.data);
+  //       setShowLoading(false);
+  //     });
+  //   } else {
+  //     const id = JSON.parse(localStorage.getItem("SID")!)._id;
+  //     API.get(`/student/${id}`).then((response) => {
+  //       setProfile(response.data);
+  //       setShowLoading(false);
+  //     });
+  //   }
+  // }, []);
 
   return (
     <IonPage>

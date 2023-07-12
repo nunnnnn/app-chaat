@@ -82,7 +82,6 @@ const Chactbot: React.FC = () => {
               continue;
             }
           }
-          // console.log(payload)
 
           if (textHistory.includes(text)) {
             console.log("Do the next steps here");
@@ -96,13 +95,9 @@ const Chactbot: React.FC = () => {
             ]);
             console.log("text", text);
           }
-          // console.log(res.data.queryResult.fulfillmentMessages[0].payload.richContent);
         });
     }
   };
-
-  // console.log("detail", details);
-
   useEffect(() => {
     axios
       .get("http://20.239.188.252:7500/google_auth")
@@ -184,21 +179,7 @@ const Chactbot: React.FC = () => {
               ) : (
                 <div></div>
               )}
-
-              <div>
-                {/* <IonCard href="https://www.mytcas.com/" >
-                <IonRow>
-                  <IonCol className=""><img src="https://placeimg.com/192/192/people" /></IonCol>
-                  <IonCol className="title">หัวข้อเรื่ิองงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง</IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonCol className="subtitle">เนื้อเรื่องงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงง</IonCol>
-                </IonRow>
-              </IonCard> */}
-              </div>
             </div>
-
-            {/* <div className="chat-footer opacity-50">Delivered</div> */}
           </div>
         ))}
       </IonContent>

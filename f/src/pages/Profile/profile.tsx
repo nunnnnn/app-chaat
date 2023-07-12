@@ -28,6 +28,7 @@ const Profile: React.FC = () => {
     surname: "",
     lastname: "",
     branch: "",
+    school:"",
     avatar: "",
   });
   
@@ -35,25 +36,81 @@ const Profile: React.FC = () => {
   const [present, dismiss] = useIonLoading();
   const history = useHistory();
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("TID")) {
+  //     const id = JSON.parse(localStorage.getItem("TID")!)._id;
+  //     API.get(`/teacher/${id}`).then((response) => {
+  //       setProfile(response.data);
+  //       setData({ ...data, avatar: response.data.avatar! });
+  //     });
+  //   } else {
+  //     const id = JSON.parse(localStorage.getItem("SID")!)._id;
+  //     API.get(`/student/${id}`).then((response) => {
+  //       setProfile(response.data);
+  //       setData({ ...data, avatar: response.data.avatar! });
+  //     });
+  //   }
+  // }, []);
   useEffect(() => {
     if (localStorage.getItem("TID")) {
       const id = JSON.parse(localStorage.getItem("TID")!)._id;
-      API.get(`/teacher/${id}`).then((response) => {
-        setProfile(response.data);
-        setData({ ...data, avatar: response.data.avatar! });
-      });
+      API.get(`/teacher/${id}`)
+        .then((response) => {
+          setProfile(response.data);
+          setData((prevData) => ({
+            ...prevData,
+            avatar: response.data.avatar,
+            surname: response.data.surname,
+            lastname: response.data.lastname,
+            school: response.data.school,
+            branch: response.data.branch,
+          }));
+        })
+        .catch((error) => {
+          console.log(error);
+          // Handle error
+        });
     } else {
       const id = JSON.parse(localStorage.getItem("SID")!)._id;
-      API.get(`/student/${id}`).then((response) => {
-        setProfile(response.data);
-        setData({ ...data, avatar: response.data.avatar! });
-      });
+      API.get(`/student/${id}`)
+        .then((response) => {
+          setProfile(response.data);
+          setData((prevData) => ({
+            ...prevData,
+            avatar: response.data.avatar,
+            surname: response.data.surname,
+            lastname: response.data.lastname,
+            school: response.data.school,
+            branch: response.data.branch,
+          }));
+        })
+        .catch((error) => {
+          console.log(error);
+          // Handle error
+        });
     }
   }, []);
+  
+
+  // const handleChange = (event: any) => {
+  //   setData({ ...data, [event.target.name]: event.target.value });
+  // };
+  // const handleChange = (event: any) => {
+  //   setData((prevData) => ({
+  //     ...prevData,
+  //     [event.target.name]: event.target.value,
+  //   }));
+  // };
 
   const handleChange = (event: any) => {
-    setData({ ...data, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+  
+
   const takePhoto = async () => {
     const access = await Filesystem.checkPermissions();
     if (access.publicStorage === "denied") {
@@ -77,6 +134,12 @@ const Profile: React.FC = () => {
     });
     API.put(`/student/${id}`, data).then((response) => {
       dismiss();
+      history.push("/profileedit");
+    window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      // Handle error
     });
   };
 
@@ -88,12 +151,15 @@ const Profile: React.FC = () => {
     });
     API.put(`/teacher/${id}`, data).then((response) => {
       dismiss();
-      
-    });
-    
-    history.push("/profileedit");
+      history.push("/profileedit");
     window.location.reload();
+    }).catch((error) => {
+      console.log(error);
+      // Handle error
+    });
   };
+  const [isEditing, setIsEditing] = useState(false);
+
  
 
   return (
@@ -129,6 +195,7 @@ const Profile: React.FC = () => {
                 className="heightname"
                 placeholder={profile && profile.name.split(" ")[0]}
                 name="surname"
+                value={data.surname}
                 onIonChange={(e) => handleChange(e)}></IonInput>
             </IonItem>
           </IonCard>
@@ -139,6 +206,18 @@ const Profile: React.FC = () => {
               <IonInput
                 placeholder={profile && profile.name.split(" ")[1]}
                 name="lastname"
+                value={data.lastname}
+                onIonChange={(e) => handleChange(e)}></IonInput>
+            </IonItem>
+          </IonCard>
+        </div>
+        <div>
+        <IonCard className="name">
+            <IonItem>
+              <IonInput
+                placeholder={profile && profile.school}
+                name="โรงเรียน"
+                value={data.school}
                 onIonChange={(e) => handleChange(e)}></IonInput>
             </IonItem>
           </IonCard>

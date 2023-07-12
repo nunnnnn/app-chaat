@@ -48,6 +48,7 @@ import Detail from "./pages/Detail/detail";
 import Chatcontroller from "./pages/ChatController/chatController";
 import Feed from "./components/Feed/feed";
 import Appbar from"./components/Appbar/Appbar";
+import Chatroom_tid from "./pages/Chatroom/chatroom_tid";
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -122,6 +123,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/Appbar" exact={true}>
               <Appbar />
+            </Route>
+            <Route path="/Chatroomtid/:sid" exact={true}>
+              <Chatroom_tid />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

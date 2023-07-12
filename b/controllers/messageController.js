@@ -25,6 +25,30 @@ module.exports.getMessages = async (req, res, next) => {
   }
 };
 
+module.exports.getMessagesUser = async (req, res, next) => {
+  try {
+    const sender = req.params.sid;
+
+    const messages = await Messages.find({
+      sender: sender,
+    }).sort({ createdAt: 1 });
+
+    // const projectedMessages = messages.map((msg) => {
+    //   return {
+    //     id: msg._id.toString(),
+    //     fromSelf: msg.sender.toString() === from,
+    //     isRead: msg.isRead,
+    //     message: msg.message.text,
+    //     date: msg.createdAt,
+    //   };
+    // });
+    res.json(messages);
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+
 module.exports.getLatestMessages = async (req, res, next) => {
   try {
     // const { from, to } = req.body;

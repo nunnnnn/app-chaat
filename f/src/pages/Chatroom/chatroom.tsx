@@ -52,14 +52,16 @@ const Chatroom: React.FC = () => {
     const data = await JSON.parse(localStorage.getItem("SID")!);
     const response = await API.post(`/messages/getmsg`, {
       from: data._id,
-      to: JSON.parse(params.param)._id,
+      to: params.param._id,
     });
     if (window.location.pathname.split("/")[1] === "chat_room") {
+      console.log('markread')
       response.data.map(async (x: any) => {
         await API.post(`/messages/markread`, { messageId: x.id });
       });
     }
     setMessages(response.data);
+    console.log(messages)
   };
 
   const handleSendMsg = async (msg: any) => {
@@ -171,7 +173,7 @@ const Chatroom: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen ref={scrollRef}>
+      <IonContent  fullscreen color="secondary">
         <br />
         {messages.map((message: any) => (
           <IonItem lines="none" key={uuidv4()}>

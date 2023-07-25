@@ -36,12 +36,11 @@ const Chatroom_tid: React.FC = () => {
   const scrollRef = useRef<HTMLIonContentElement | null>(null);
   const [arrivalMessage, setArrivalMessage] = useState<any>();
   const { sid } = useParams<{ sid: string }>();
-  const [chats, setChat] = useState<any[]>([]);
 
   const [input, setInput] = useState("");
   const [users, setUsers] = useState("");
 
-  console.log(sid);
+  // console.log(sid);
   const scrollToBottom = () => {
     scrollRef.current && scrollRef.current.scrollToBottom();
   };
@@ -54,40 +53,43 @@ const Chatroom_tid: React.FC = () => {
     }
   };
 
-  // const receivedMessage = async () => {
-  //   console.log(window.location.pathname.split("/")[1]);
-  //   const data = await JSON.parse(localStorage.getItem("TID")!);
-  //   console.log('data',data)
-  //   const response = await API.post(`/messages/getmsg`, {
-  //     from: data._id,
-  //     to: params.param._id,
-  //   });
-  //   if (window.location.pathname.split("/")[1] === "chat_room") {
-  //     console.log("markread");
-  //     response.data.map(async (x: any) => {
-  //       await API.post(`/messages/markread`, { messageId: x.id });
-  //     });
-  //   }
-  //   setMessages(response.data);
-  //   console.log(messages);
-  // };
+  const receivedMessage = async () => {
+    console.log(window.location.pathname.split("/")[1]);
+    const data = await JSON.parse(localStorage.getItem("TID")!);
+    // console.log('data',data)
+    const response = await API.post(`/messages/getmsg`, {
+      from: sid,
+      to: sid,
+    });
+    if (window.location.pathname.split("/")[1] === "Chatroomtid") {
+      console.log("markread");
+      response.data.map(async (x: any) => {
+        await API.post(`/messages/markread`, { messageId: x.id });
+      });
+    }
+    setMessages(response.data);
+    // setChat(response.data)
+    console.log(messages);
+  };
 
   const handleSendMsg = async (msg: any) => {
+    console.log('msg',msg)
     getCurrentChat();
     const data = await JSON.parse(localStorage.getItem("TID")!);
+    console.log('data',data)
     socket.current.emit("send-msg", {
-      to: params.param._id,
+      to: sid,
       from: data._id,
       msg,
     });
     await API.post(`/messages/addmsg`, {
       from: data._id,
-      to: params.param._id,
+      to: sid,
       message: msg,
     });
 
     const msgs = [...messages];
-    msgs.push({ fromSelf: true, message: msg });
+    msgs.push({ fromSelf: false, message: msg });
     setMessages(msgs);
   };
 
@@ -110,47 +112,41 @@ const Chatroom_tid: React.FC = () => {
   };
 
   useEffect(() => {
-    API.get(`messages/getmsguser/${sid}`).then((response) => {
-      console.log("message", response.data);
-      setChat(response.data);
-    });
-  }, [present, dismiss]);
-
-  useEffect(() => {
     API.get(`student/${sid}`).then((response) => {
       console.log(response.data.name);
       setUsers(response.data.name);
     });
   }, [present, dismiss]);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     socket.current = io("http://localhost:7000");
-  //     socket.current.emit("add-user", currentUser._id);
-  //   }
-  // }, [currentUser]);
+  useEffect(() => {
+    if (currentUser) {
+      socket.current = io("http://localhost:7000");
+      socket.current.emit("add-user", currentUser._id);
+    }
+  }, [currentUser]);
 
-  // useEffect(() => {
-  //   if (socket.current) {
-  //     socket.current.on("msg-receive", (msg: any) => {
-  //       receivedMessage();
-  //       setArrivalMessage({ fromSelf: false, message: msg });
-  //     });
-  //   }
-  // });
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on("msg-receive", (msg: any) => {
+        console.log('socket',msg)
+        receivedMessage();
+        setArrivalMessage({ fromSelf: false, message: msg });
+      });
+    }
+  });
 
-  // useEffect(() => {
-  //   arrivalMessage && setMessages((prev: any) => [...prev, arrivalMessage]);
-  // }, [arrivalMessage]);
+  useEffect(() => {
+    arrivalMessage && setMessages((prev: any) => [...prev, arrivalMessage]);
+  }, [arrivalMessage]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  // useEffect(() => {
-  //   receivedMessage();
-  //   mounted();
-  // }, []);
+  useEffect(() => {
+    receivedMessage();
+    mounted();
+  }, []);
 
   useEffect(() => {
     getCurrentChat();
@@ -160,7 +156,7 @@ const Chatroom_tid: React.FC = () => {
     setIsBack(true);
     history.goBack();
   };
-  console.log("users", users);
+  // console.log("users", users);
 
   return (
     <IonPage>
@@ -177,21 +173,26 @@ const Chatroom_tid: React.FC = () => {
             </IonChip>
           </IonButtons>
           <IonTitle slot="end">
-                {sid ? users : "Loading"}{" "}
-                {/* {users ? users : "Loading"} Room */}
+            {/* {JSON.parse(params.param)
+              ? JSON.parse(params.param).username
+              : "Loading"}{" "} */}
+              {params.param
+                ? params.param.username
+                : "Loading"}{" "}
+            Room
           </IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen color="secondary">
+      <IonContent  fullscreen color="secondary">
         <br />
-        {chats.map((chat: any) => (
+        {messages.map((message: any) => (
           <IonItem lines="none" key={uuidv4()}>
             <IonChip
-              color={chat.sender != sid ? "success" : "primary"}
-              slot={chat.sender != sid ? "end" : "start"}
+              color={!message.fromSelf ? "success" : "primary"}
+              slot={!message.fromSelf ? "end" : "start"}
             >
-              {chat.sender != sid ? (
+              {!message.fromSelf ? (
                 <></>
               ) : (
                 <IonAvatar>
@@ -201,8 +202,8 @@ const Chatroom_tid: React.FC = () => {
                   />
                 </IonAvatar>
               )}
-              <IonLabel>{chat.message.text}</IonLabel>
-              {chat.sender != sid ? (
+              <IonLabel>{message.message}</IonLabel>
+              {!message.fromSelf ? (
                 <IonAvatar>
                   <img
                     alt=""

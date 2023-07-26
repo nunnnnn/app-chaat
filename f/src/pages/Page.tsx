@@ -47,7 +47,7 @@ import DriectMessages from "./Driect/driect_message";
 
 const Page: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const staff = ["โพสต์"];
+  const staff = ["โพสต์","ฟีดข่าวแอดมิน","ตอบกลับข้อความ"];
 
   return (
     <IonPage>

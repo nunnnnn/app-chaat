@@ -177,18 +177,19 @@ const Chatroom_tid: React.FC = () => {
       </IonContent>
 
       <IonFooter>
-        <IonList class="au-form" style={{ borderTop: "1px solid gray" }}>
+        <IonList class="au-form"  style={{borderTop: "1px solid gray"}} >
           <IonItem lines="none">
             <IonInput
               placeholder="คุณกำลังคิดอะไรอยู่"
-              style={{ background: "#f5f5f5" }}
+              // style={{ background: "#a71616" }}
               value={input}
               onIonChange={(e: any) => setInput(e.target.value)}
             ></IonInput>
             <IonButton
               size="default"
-              style={{ marginLeft: "0.5rem" }}
+              style={{ background:"red" ,with:"70px", }}
               onClick={sendMessage}
+              
             >
               <IonIcon slot="icon-only" icon={send}></IonIcon>
             </IonButton>

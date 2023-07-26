@@ -31,7 +31,6 @@ import "./theme/variables.css";
 import Profile from "./pages/Profile/profile";
 import Profileedit from "./pages/Profileedit/profileedit";
 import Notification from "./pages/Notification/notification";
-import Profilestaff from "./pages/Profilestaff/profilestaff";
 import Editstaff from "./pages/Editstaff/Editstaff";
 import Editfeed from "./pages/Editfeed/editfeed";
 import Menustaff from "./components/Menustaff/Menustaff";
@@ -42,10 +41,7 @@ import Postedit from "./pages/Postedit/postedit";
 import Regis from "./pages/Regis/regis";
 import Contact from "./pages/Contact/contact";
 import Feedstaff from "./pages/Feedstaff/feedstaff";
-import Profileadmin from "./pages/Profileadmin/profileadmin";
-import Editadmin from "./pages/Editadmin/editadmin";
 import Detail from "./pages/Detail/detail";
-import Chatcontroller from "./pages/ChatController/chatController";
 import Feed from "./components/Feed/feed";
 import Appbar from"./components/Appbar/Appbar";
 import Chatroom_tid from "./pages/Chatroom/chatroom_tid";
@@ -73,14 +69,8 @@ const App: React.FC = () => {
             <Route path="/Notification/" exact={true}>
               <Notification />
             </Route>
-            <Route path="/Profilestaff" exact={true}>
-              <Profilestaff />
-            </Route>
             <Route path="/Chatbot" exact={true}>
               <Chatbot />
-            </Route>
-            <Route path="/Chatcontroller" exact={true}>
-              <Chatcontroller />
             </Route>
             <Route path="/Post" exact={true}>
               <Post />
@@ -106,12 +96,6 @@ const App: React.FC = () => {
             <Route path="/Editstaff/:id" exact={true}>
               <Editstaff />
             </Route>
-            <Route path="/Profileadmin" exact={true}>
-              <Profileadmin />
-            </Route>
-            <Route path="/Editadmin" exact={true}>
-              <Editadmin />
-              </Route>
             <Route path="/Feed" exact={true} >
               <Feed />
             </Route>

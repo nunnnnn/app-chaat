@@ -90,12 +90,6 @@ const Chatroom: React.FC = () => {
       setInput("");
     }
   };
-
-  // const getCurrentChat = async () => {
-  //   if (JSON.parse(params.param)) {
-  //     params.param = await JSON.parse(localStorage.getItem("SID")!)._id;
-  //   }
-  // };
   const getCurrentChat = async () => {
     const storedValue = localStorage.getItem("SID");
     
@@ -135,9 +129,6 @@ const Chatroom: React.FC = () => {
     mounted();
   }, []);
 
-  // useEffect(() => {
-  //   getCurrentChat();
-  // }, [JSON.parse(params.param)]);
   useEffect(() => {
     getCurrentChat();
   }, []);
@@ -162,9 +153,6 @@ const Chatroom: React.FC = () => {
             </IonChip>
           </IonButtons>
           <IonTitle slot="end">
-            {/* {JSON.parse(params.param)
-              ? JSON.parse(params.param).username
-              : "Loading"}{" "} */}
               {params.param
                 ? params.param.username
                 : "Loading"}{" "}

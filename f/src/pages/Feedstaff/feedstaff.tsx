@@ -13,7 +13,7 @@ import {
   useIonLoading,
   useIonToast
 } from "@ionic/react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { create, trash } from "ionicons/icons";
 import "./feedstaff.css";
@@ -111,7 +111,6 @@ const Feedstaff: React.FC = () => {
                           ],
                         })
                       }
-                      // onClick={() => handleDeletePost(postId.id)}
                     >
                       <IonIcon
                         slot="icon-only"

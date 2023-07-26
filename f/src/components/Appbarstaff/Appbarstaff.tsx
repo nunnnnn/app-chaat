@@ -10,7 +10,6 @@ import {
   IonTitle,
 } from "@ionic/react";
 import React, { useState } from "react";
-// import { personCircleOutline } from "ionicons/icons";
 import "./Appbarstaff.css";
 import { useParams } from "react-router";
 
@@ -23,10 +22,7 @@ const Appbarstaff: React.FC = () => {
       <IonToolbar color="primary">
         <IonFab horizontal="end">
           <IonRow>
-            <IonFabButton className="fabbutton" routerLink="/Notification">
-              <IonIcon color="light" icon="chatbubble-ellipses"></IonIcon>
-            </IonFabButton>
-            <IonFabButton className="fabbutton" routerLink="/Editstaff">
+            <IonFabButton className="fabbutton" routerLink="/Profileedit">
               <IonIcon color="light" icon="person-circle"></IonIcon>
             </IonFabButton>
           </IonRow>

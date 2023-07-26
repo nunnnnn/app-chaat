@@ -42,7 +42,6 @@ import Post from "./Post/post";
 import Contact from "./Contact/contact";
 import Chactbot from "./Chatbot/chatbot";
 import Chatroom from "./Chatroom/chatroom";
-import Chatcontroller from "./ChatController/chatController";
 import DriectMessages from "./Driect/driect_message";
 // import Postedit from "./Postedit/postedit";
 

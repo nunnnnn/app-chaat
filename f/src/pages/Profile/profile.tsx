@@ -31,6 +31,7 @@ const Profile: React.FC = () => {
     school:"",
     avatar: "",
   });
+console.log('data', data)
   
   const [profile, setProfile] = useState<any>();
   const [present, dismiss] = useIonLoading();
@@ -90,7 +91,6 @@ const Profile: React.FC = () => {
         });
     }
   }, []);
-  
 
   // const handleChange = (event: any) => {
   //   setData({ ...data, [event.target.name]: event.target.value });
@@ -134,8 +134,7 @@ const Profile: React.FC = () => {
     });
     API.put(`/student/${id}`, data).then((response) => {
       dismiss();
-      history.push("/profileedit");
-    window.location.reload();
+      history.push("/Profiledit", { updatedData: data });
     })
     .catch((error) => {
       console.log(error);
@@ -151,15 +150,13 @@ const Profile: React.FC = () => {
     });
     API.put(`/teacher/${id}`, data).then((response) => {
       dismiss();
-      history.push("/profileedit");
-    window.location.reload();
+      history.push("/Profiledit", { updatedData: data });
     }).catch((error) => {
       console.log(error);
       // Handle error
     });
   };
   const [isEditing, setIsEditing] = useState(false);
-
  
 
   return (
@@ -216,9 +213,10 @@ const Profile: React.FC = () => {
             <IonItem>
               <IonInput
                 placeholder={profile && profile.school}
-                name="โรงเรียน"
+                name="school"
                 value={data.school}
-                onIonChange={(e) => handleChange(e)}></IonInput>
+                
+                onIonChange={(e) => handleChange(e)}> </IonInput>
             </IonItem>
           </IonCard>
         </div>

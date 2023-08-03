@@ -19,7 +19,6 @@ const Profileedit: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
   const history = useHistory();
 
-
   useEffect(() => {
     setProfile(true);
     const updatedData = history.location.state; // ดึงข้อมูลที่ถูกส่งมาจากหน้า Profile
@@ -41,6 +40,8 @@ const Profileedit: React.FC = () => {
       }
     }
   }, []);
+  
+  console.log('profile', profile)
   // useEffect(() => {
   //   setProfile(true);
   //   if (localStorage.getItem("TID")) {

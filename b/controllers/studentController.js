@@ -73,13 +73,14 @@ module.exports.getStudentById = async (req, res, next) => {
 
 module.exports.updateStudentById = async (req, res, next) => {
   try {
-    const { surname, lastname, branch, avatar } = req.body;
+    const { surname, lastname, branch, avatar ,school} = req.body;
     await Student.updateOne(
       { _id: req.params.eid },
       {
         name: `${surname} ${lastname}`,
         branch,
         avatar,
+        school,
       }
     );
     return res.json({ status: 200, msg: "Update success!" });

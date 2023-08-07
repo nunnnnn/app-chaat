@@ -16,7 +16,6 @@ import Appbar from "../../components/Appbar/Appbar";
 import React, { useEffect, useState } from "react";
 import { addCircle } from "ionicons/icons";
 import "./profile.css";
-// import ExploreContainer from "../../components/ExploreContainer";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { Filesystem } from "@capacitor/filesystem";
 import { useHistory } from "react-router-dom";
@@ -31,7 +30,6 @@ const Profile: React.FC = () => {
     school:"",
     avatar: "",
   });
-console.log('data', data)
   
   const [profile, setProfile] = useState<any>();
   const [present, dismiss] = useIonLoading();
@@ -61,8 +59,8 @@ console.log('data', data)
           setData((prevData) => ({
             ...prevData,
             avatar: response.data.avatar,
-            surname: response.data.surname,
-            lastname: response.data.lastname,
+            surname: response.data.name.split(" ")[0],
+            lastname: response.data.name.split(" ")[1],
             school: response.data.school,
             branch: response.data.branch,
           }));
@@ -79,8 +77,8 @@ console.log('data', data)
           setData((prevData) => ({
             ...prevData,
             avatar: response.data.avatar,
-            surname: response.data.surname,
-            lastname: response.data.lastname,
+            surname: response.data.name.split(" ")[0],
+            lastname: response.data.name.split(" ")[1],
             school: response.data.school,
             branch: response.data.branch,
           }));
@@ -134,8 +132,9 @@ console.log('data', data)
     });
     API.put(`/student/${id}`, data).then((response) => {
       dismiss();
-      history.push("/Profiledit", { updatedData: data });
+      history.push("/page/profileedit", { updatedData: data });
     })
+    
     .catch((error) => {
       console.log(error);
       // Handle error
@@ -150,7 +149,7 @@ console.log('data', data)
     });
     API.put(`/teacher/${id}`, data).then((response) => {
       dismiss();
-      history.push("/Profiledit", { updatedData: data });
+      history.push("/page/ฟีดข่าว", { updatedData: data });
     }).catch((error) => {
       console.log(error);
       // Handle error
@@ -164,7 +163,7 @@ console.log('data', data)
     <IonPage>
       <Appbar />
       <IonContent fullscreen color="secondary">
-      <IonButton className="icon"  routerLink="/Profileedit" color="secondary" >
+      <IonButton className="icon"  routerLink="/page/Profileedit" color="secondary" >
             <IonIcon  icon="arrow-back-circle-outline" style={{with:"fit-content",}} ></IonIcon>
           </IonButton>
         <IonFab horizontal="center">
@@ -230,6 +229,7 @@ console.log('data', data)
                   placeholder={profile && profile.branch}
                   onIonChange={(e) => handleChange(e)}
                   name="branch"
+                  value={data.branch||""}
                   style={{ maxWidth: "100%", width: "100%" }}>
                   <IonSelectOption value="สาขาวิชาฟิสิกส์ชีวการแพทย์">
                     สาขาวิชาฟิสิกส์ชีวการแพทย์
@@ -285,7 +285,7 @@ console.log('data', data)
             <IonButton
               className="bn"
               expand="block"
-              routerLink="/Profileedit"
+              routerLink="/page/Profileedit"
               onClick={handleTeacherProfileUpdate}>
               บันทึก
               

@@ -88,7 +88,7 @@ const Profile: React.FC = () => {
               <IonBadge color="danger">{count > 0 ? count : null}</IonBadge>
               <IonIcon color="light" icon="notifications-circle"></IonIcon>
             </IonFabButton>
-            <IonFabButton className="fabbutton" routerLink="/Profileedit">
+            <IonFabButton className="fabbutton" routerLink="/page/Profileedit">
               <IonIcon color="light" icon="person-circle"></IonIcon>
             </IonFabButton>
           </IonRow>

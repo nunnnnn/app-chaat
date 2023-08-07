@@ -146,7 +146,7 @@ const Postedit: React.FC = () => {
         showToast(data.msg);
       } else {
         history.push("/page/ฟีดข่าวแอดมิน");
-        window.location.reload();
+        
       }
     }
   };

@@ -33,7 +33,6 @@ import Profileedit from "./pages/Profileedit/profileedit";
 import Notification from "./pages/Notification/notification";
 import Editstaff from "./pages/Editstaff/Editstaff";
 import Editfeed from "./pages/Editfeed/editfeed";
-import Menustaff from "./components/Menustaff/Menustaff";
 import Chatbot from "./pages/Chatbot/chatbot";
 import Chatroom from "./pages/Chatroom/chatroom"
 import Post from "./pages/Post/post";
@@ -66,7 +65,7 @@ const App: React.FC = () => {
             <Route path="/Profile" exact={true}>
               <Profile />
             </Route>
-            <Route path="/Notification/" exact={true}>
+            <Route path="/page/Notification/" exact={true}>
               <Notification />
             </Route>
             <Route path="/Chatbot" exact={true}>
@@ -81,7 +80,7 @@ const App: React.FC = () => {
             <Route path="/Regis" exact={true}>
               <Regis />
             </Route>
-            <Route path="/Profileedit" exact={true}>
+            <Route path="/page/Profileedit" exact={true}>
               <Profileedit />
             </Route>
             <Route path="/Contact" exact={true}>

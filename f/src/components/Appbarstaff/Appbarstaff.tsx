@@ -22,7 +22,7 @@ const Appbarstaff: React.FC = () => {
       <IonToolbar color="primary">
         <IonFab horizontal="end">
           <IonRow>
-            <IonFabButton className="fabbutton" routerLink="/Profileedit">
+            <IonFabButton className="fabbutton" routerLink="/page/Profileedit">
               <IonIcon color="light" icon="person-circle"></IonIcon>
             </IonFabButton>
           </IonRow>

@@ -43,6 +43,7 @@ import Contact from "./Contact/contact";
 import Chactbot from "./Chatbot/chatbot";
 import Chatroom from "./Chatroom/chatroom";
 import DriectMessages from "./Driect/driect_message";
+import Profileedit from "./Profileedit/profileedit";
 // import Postedit from "./Postedit/postedit";
 
 const Page: React.FC = () => {
@@ -61,6 +62,8 @@ const Page: React.FC = () => {
         {name === "แชทตอบอัตโนมัติ" && <Chactbot />}
         {name === "ฝากข้อความ" && <Chatroom />}
         {name === "ตอบกลับข้อความ" && <DriectMessages />}
+        {/* {name === "แก้ไขข้อมูลส่วนตัว" && <Profileedit />} */}
+
 
 
 

@@ -80,10 +80,10 @@ const Profileedit: React.FC = () => {
             <h2 className="profilename">ชื่อ : {profile.name}</h2>
             <h2> 
               {profile.school
-                ? "โรงเรียน" + profile.school
+                ? "โรงเรียน : "  + profile.school
                 : "มหาวิทยาลัยอุบลราชธานี"}
             </h2>
-            <h2>{profile.branch ?"สาขาที่สนใจ:"  + profile.branch : "คณะวิทยาศาสตร์"}</h2>
+            <h2>{profile.branch ?"สาขาที่สนใจ : "  + profile.branch : "คณะวิทยาศาสตร์"}</h2>
             <h2> อีเมล์ : {profile.email}</h2>
           </div>
         )}

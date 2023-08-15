@@ -3,8 +3,9 @@ const bcrypt = require("bcrypt");
 
 module.exports.createTeacher = async (req, res, next) => {
   try {
-    const { name, email, avatar, password } = req.body;
+    const { name, email, password } = req.body;
     const user = await Teacher.findOne({ email });
+    const avatar = ""
     if (user) {
       return res
         .status(409)

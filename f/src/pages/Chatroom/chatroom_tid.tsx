@@ -59,7 +59,7 @@ const Chatroom_tid: React.FC = () => {
     // console.log('data',data)
     const response = await API.post(`/messages/getmsg`, {
       from: sid,
-      to: sid,
+      to: data._id,
     });
     if (window.location.pathname.split("/")[1] === "Chatroomtid") {
       console.log("markread");
@@ -78,12 +78,12 @@ const Chatroom_tid: React.FC = () => {
     const data = await JSON.parse(localStorage.getItem("TID")!);
     console.log('data',data)
     socket.current.emit("send-msg", {
-      to: sid,
-      from: data._id,
+      to: data._id,
+      from: sid,
       msg,
     });
     await API.post(`/messages/addmsg`, {
-      from: data._id,
+      from:data._id ,
       to: sid,
       message: msg,
     });

@@ -44,6 +44,7 @@ import Detail from "./pages/Detail/detail";
 import Feed from "./components/Feed/feed";
 import Appbar from"./components/Appbar/Appbar";
 import Chatroom_tid from "./pages/Chatroom/chatroom_tid";
+import RegisAdmin from "./pages/Regis/regisAdmin";
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -79,6 +80,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/Regis" exact={true}>
               <Regis />
+            </Route>
+            <Route path="/RegisAdmin" exact={true}>
+              <RegisAdmin />
             </Route>
             <Route path="/page/Profileedit" exact={true}>
               <Profileedit />

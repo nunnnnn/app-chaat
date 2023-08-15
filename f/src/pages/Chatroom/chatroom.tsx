@@ -14,6 +14,7 @@ import {
   IonInput,
   IonList,
   IonButton,
+  useIonLoading,
 } from "@ionic/react";
 import { caretBack, send } from "ionicons/icons";
 import { io } from "socket.io-client";
@@ -33,6 +34,8 @@ const Chatroom: React.FC = () => {
   const [messages, setMessages] = useState<any>([]);
   const scrollRef = useRef<HTMLIonContentElement | null>(null);
   const [arrivalMessage, setArrivalMessage] = useState<any>();
+  const [admin, setAdmin] = useState("");
+  const [present, dismiss] = useIonLoading();
 
   const [input, setInput] = useState("");
 
@@ -68,13 +71,13 @@ const Chatroom: React.FC = () => {
     getCurrentChat()
     const data = await JSON.parse(localStorage.getItem("SID")!);
     socket.current.emit("send-msg", {
-      to: params.param._id,
+      to: admin,
       from: data._id,
       msg,
     });
     await API.post(`/messages/addmsg`, {
       from: data._id,
-      to: params.param._id,
+      to: admin,
       message: msg,
     });
 
@@ -99,6 +102,13 @@ const Chatroom: React.FC = () => {
       console.log(params.param)
     }
   };
+
+  useEffect(() => {
+    API.get(`/teacher`).then((response) => {
+      console.log(response.data[0]._id);
+      setAdmin(response.data[0]._id);
+    });
+  }, [present, dismiss]);
 
   useEffect(() => {
     if (currentUser) {

@@ -57,13 +57,12 @@ module.exports.getLatestMessages = async (req, res, next) => {
     const messages = await Messages.aggregate([
       { $sort: { createdAt: -1 } },
       { $group: {
-        _id: "$sender",
+        _id: "$studentID",
         latestCreatedAt: { $first: "$createdAt" },
         message: { $first: "$message" },
         users: { $first: "$users" },
         isRead: { $first: "$isRead" },
-        updatedAt: { $first: "$updatedAt" },
-        __v: { $first: "$__v" }
+        updatedAt: { $first: "$updatedAt" }
       }}
     ]);
     res.json(messages);
@@ -74,12 +73,13 @@ module.exports.getLatestMessages = async (req, res, next) => {
 // ส่งข้อความ
 module.exports.addMessage = async (req, res, next) => {
   try {
-    const { from, to, message } = req.body;
+    const { from, to, message, studentID } = req.body;
     const data = await Messages.create({
       message: { text: message },
       users: [from, to],
       isRead: false,
       sender: from,
+      studentID: studentID
     });
 
     if (data) return res.json({ msg: "Message added successfully." });

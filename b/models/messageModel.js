@@ -12,6 +12,11 @@ const MessageSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+    studentID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Student",
+      required: true,
+    },
   },
   {
     timestamps: true,

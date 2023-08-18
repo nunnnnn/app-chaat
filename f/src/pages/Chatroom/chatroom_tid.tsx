@@ -78,13 +78,15 @@ const Chatroom_tid: React.FC = () => {
     const data = await JSON.parse(localStorage.getItem("TID")!);
     console.log('data',data)
     socket.current.emit("send-msg", {
-      to: data._id,
-      from: sid,
+      to: sid,
+      from: data._id,
+      studentID: sid,
       msg,
     });
     await API.post(`/messages/addmsg`, {
       from:data._id ,
       to: sid,
+      studentID: sid,
       message: msg,
     });
 

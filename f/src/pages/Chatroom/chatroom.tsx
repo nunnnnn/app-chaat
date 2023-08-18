@@ -73,11 +73,13 @@ const Chatroom: React.FC = () => {
     socket.current.emit("send-msg", {
       to: admin,
       from: data._id,
+      studentID: data._id,
       msg,
     });
     await API.post(`/messages/addmsg`, {
       from: data._id,
       to: admin,
+      studentID: data._id,
       message: msg,
     });
 

@@ -59,7 +59,7 @@ const DriectMessages: React.FC = () => {
           <IonCard key={uuidv4()} style={{ cursor: "pointer" }} onClick={() => viewChat(chat._id)}>
             {users.map((user: any) => (
               <div key={uuidv4()}>
-                {user._id == chat.users[0] && (
+                {user._id == chat._id && (
                   <div>
                     <IonCardHeader style={{ backgroundColor: '#F6F1E9' }}>
                       <IonCardTitle className="texttitle">

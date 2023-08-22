@@ -20,6 +20,7 @@ const Profileedit: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('profile', profile)
     setProfile(true);
     const updatedData = history.location.state; // ดึงข้อมูลที่ถูกส่งมาจากหน้า Profile
     if (updatedData) {
@@ -42,22 +43,6 @@ const Profileedit: React.FC = () => {
   }, []);
   
   console.log('profile', profile)
-  // useEffect(() => {
-  //   setProfile(true);
-  //   if (localStorage.getItem("TID")) {
-  //     const id = JSON.parse(localStorage.getItem("TID")!)._id;
-  //     API.get(`/teacher/${id}`).then((response) => {
-  //       setProfile(response.data);
-  //       setShowLoading(false);
-  //     });
-  //   } else {
-  //     const id = JSON.parse(localStorage.getItem("SID")!)._id;
-  //     API.get(`/student/${id}`).then((response) => {
-  //       setProfile(response.data);
-  //       setShowLoading(false);
-  //     });
-  //   }
-  // }, []);
 
   return (
     <IonPage>

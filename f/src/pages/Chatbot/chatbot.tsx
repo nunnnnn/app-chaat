@@ -13,10 +13,12 @@ import "./chatbot.css";
 import axios from "axios";
 
 const suggestions = [
+  "คำถามที่พบบ่อย",
   "เกี่ยวกับmytcasc",
-  "ระเบียบมหาวิทยาลัย,พักหอใน",
   "ปริญญาตรีมีกี่สาขา",
-  "คำถามที่พบบ่อย"
+  "ระเบียบมหาวิทยาลัย,หอพักหอใน",
+  
+ 
 ];
 
 const Chactbot: React.FC = () => {

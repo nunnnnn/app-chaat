@@ -133,8 +133,8 @@ const Profile: React.FC = () => {
     API.put(`/student/${id}`, data).then((response) => {
       dismiss();
       const updatedData = { ...data, avatar: response.data.avatar };
-      history.push("/page/profileedit", { updatedData: updatedData });
-      setProfile(updatedData); // อัพเดต state ของ Profileedit ทันที
+      console.log(updatedData);
+      window.location.replace("/page/Profileedit");
     })
     
     .catch((error) => {

@@ -62,7 +62,6 @@ const Page: React.FC = () => {
         {name === "แชทตอบอัตโนมัติ" && <Chactbot />}
         {name === "ฝากข้อความ" && <Chatroom />}
         {name === "ตอบกลับข้อความ" && <DriectMessages />}
-        {/* {name === "แก้ไขข้อมูลส่วนตัว" && <Profileedit />} */}
 
 
 

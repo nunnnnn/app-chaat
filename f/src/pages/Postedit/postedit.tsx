@@ -135,22 +135,26 @@ const Postedit: React.FC = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     console.log(text);
+    const editedText = { ...text, image: img || text.image || data.image };
+
+  console.log(editedText);
+
     if (handleValidation()) {
       present({
         message: "อัพเดตโพส์ต...",
         spinner: "crescent",
       });
-      const { data } = await API.put(`/post/${id}`, text);
+      const { data } = await API.put(`/post/${id}`, editedText);
       dismiss();
       if (data.status === false) {
         showToast(data.msg);
       } else {
-        history.push("/page/ฟีดข่าวแอดมิน");
+        window.location.replace("/page/ฟีดข่าวแอดมิน");
         
       }
     }
   };
-
+console.log('data', data)
   return (
     <IonPage>
       <Appbarstaff />

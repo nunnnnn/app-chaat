@@ -104,7 +104,7 @@ const Post: React.FC = () => {
       if (data.status === false) {
         showToast(data.msg);
       } else {
-        history.push("/page/ฟีดข่าว");
+        window.location.replace("/page/ฟีดข่าวแอดมิน");
       }
     }
   };

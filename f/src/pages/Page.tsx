@@ -35,7 +35,6 @@ import Appbar from "../components/Appbar/Appbar";
 import Feed from "../components/Feed/feed"
 import Feedstaff from "./Feedstaff/feedstaff";
 import { useParams } from "react-router";
-import ExploreContainer from "../components/ExploreContainer";
 import Appbarstaff from "../components/Appbarstaff/Appbarstaff";
 import "./Page.css";
 import Post from "./Post/post";
@@ -62,6 +61,10 @@ const Page: React.FC = () => {
         {name === "แชทตอบอัตโนมัติ" && <Chactbot />}
         {name === "ฝากข้อความ" && <Chatroom />}
         {name === "ตอบกลับข้อความ" && <DriectMessages />}
+        {name === "ฟีดข่าวแอดมิน" && <Feedstaff />}
+        {name === "ข้อมูลส่วนตัว" && <Profileedit />}
+
+
 
 
 

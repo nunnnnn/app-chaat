@@ -34,22 +34,8 @@ const Profile: React.FC = () => {
   const [profile, setProfile] = useState<any>();
   const [present, dismiss] = useIonLoading();
   const history = useHistory();
+  const [showEditAvatarText, setShowEditAvatarText] = useState(false);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("TID")) {
-  //     const id = JSON.parse(localStorage.getItem("TID")!)._id;
-  //     API.get(`/teacher/${id}`).then((response) => {
-  //       setProfile(response.data);
-  //       setData({ ...data, avatar: response.data.avatar! });
-  //     });
-  //   } else {
-  //     const id = JSON.parse(localStorage.getItem("SID")!)._id;
-  //     API.get(`/student/${id}`).then((response) => {
-  //       setProfile(response.data);
-  //       setData({ ...data, avatar: response.data.avatar! });
-  //     });
-  //   }
-  // }, []);
   useEffect(() => {
     if (localStorage.getItem("TID")) {
       const id = JSON.parse(localStorage.getItem("TID")!)._id;
@@ -67,7 +53,6 @@ const Profile: React.FC = () => {
         })
         .catch((error) => {
           console.log(error);
-          // Handle error
         });
     } else {
       const id = JSON.parse(localStorage.getItem("SID")!)._id;
@@ -85,20 +70,9 @@ const Profile: React.FC = () => {
         })
         .catch((error) => {
           console.log(error);
-          // Handle error
         });
     }
   }, []);
-
-  // const handleChange = (event: any) => {
-  //   setData({ ...data, [event.target.name]: event.target.value });
-  // };
-  // const handleChange = (event: any) => {
-  //   setData((prevData) => ({
-  //     ...prevData,
-  //     [event.target.name]: event.target.value,
-  //   }));
-  // };
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -139,7 +113,6 @@ const Profile: React.FC = () => {
     
     .catch((error) => {
       console.log(error);
-      // Handle error
     });
   };
 
@@ -157,7 +130,7 @@ const Profile: React.FC = () => {
       // Handle error
     });
   };
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
  
 
   return (
@@ -169,14 +142,24 @@ const Profile: React.FC = () => {
             <IonIcon  icon="arrow-back-circle-outline" style={{with:"fit-content",}} ></IonIcon>
           </IonButton>
         <IonFab horizontal="center">
-          <IonFabButton className="fabbuttonprofile" onClick={takePhoto}>
+        <IonFabButton
+            className="fabbuttonprofile"
+            onClick={() => {
+              takePhoto();
+              setShowEditAvatarText(true);
+            }}>
+          <div className="edit-avatar-text" >แก้ไขรูปภาพ</div>
+
             <IonIcon
               className="fabbuttonprofileicon"
               icon={addCircle}></IonIcon>
+            {showEditAvatarText && <div className="edit-avatar-text">แก้ไขรูปภาพ</div>}
             <img
               alt="Silhouette of a person's head"
               src={img ? img : profile && profile.avatar}
+              
             />
+ {/* {showEditAvatarText && <div className="edit-avatar-text"></div>} */}
           </IonFabButton>
         </IonFab>
         <div className="contentcenter">

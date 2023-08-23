@@ -33,6 +33,8 @@ const Postedit: React.FC = () => {
   const [IonToast] = useIonToast();
   const [present, dismiss] = useIonLoading();
   const [img, setImg] = useState<any>();
+  const [showEditImgText, setShowEditImgText] = useState(false);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const history = useHistory();
 
@@ -161,8 +163,15 @@ console.log('data', data)
       <IonContent fullscreen color="secondary">
         <form onSubmit={(event) => handleSubmit(event)}>
           <IonFab horizontal="center">
-            <IonFabButton className="fabbuttonup" onClick={takePhoto}>
+            <IonFabButton className="fabbuttonup"
+            onClick={() => {
+              takePhoto();
+              setShowEditImgText(true);
+            }}>
+          <div className="edit-avatar-text" >แก้ไขรูปภาพ</div>
+
               <IonIcon className="fabbuttonupicon" icon={addCircle}></IonIcon>
+              {showEditImgText && <div className="edit-img-text">แก้ไขรูปภาพ</div>}
               <img
                 alt="Silhouette of a person's head"
                 src={img ? img : text.image || data.image}

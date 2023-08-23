@@ -16,7 +16,7 @@ import {
   useIonToast,
   useIonLoading,
 } from "@ionic/react";
-import { addCircle, paperPlane } from "ionicons/icons";
+import { imagesOutline, paperPlane } from "ionicons/icons";
 import Appbarstaff from "../../components/Appbarstaff/Appbarstaff";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
@@ -30,6 +30,8 @@ const Post: React.FC = () => {
   const [IonToast] = useIonToast();
   const [present, dismiss] = useIonLoading();
   const [img, setImg] = useState<any>();
+  const [showImgText, setShowImgText] = useState(false);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const history = useHistory();
 
@@ -115,18 +117,17 @@ const Post: React.FC = () => {
       <IonContent fullscreen color="secondary">
         <form onSubmit={(event) => handleSubmit(event)}>
           <IonFab horizontal="center">
-            <IonFabButton className="fabbuttonup" onClick={takePhoto}>
+            <IonFabButton className="fabbuttonup" 
+            onClick={() => {
+              takePhoto();
+              setShowImgText(true);
+            }}>
+          <div className="edit-avatar-text" >เพิ่มรูปภาพ</div>
               <IonIcon
                 className="fabbuttonupicon"
-                icon={addCircle}></IonIcon>
-              {/* <IonAvatar
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  width: "5rem",
-                  height: "5rem",
-                }}
-              > */}
+                icon={imagesOutline}></IonIcon>
+            {showImgText && <div className="img-text">เพิ่มรูปภาพ</div>}
+
               <img
                 alt="Silhouette of a person's head"
                 src={

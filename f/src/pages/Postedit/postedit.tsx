@@ -266,7 +266,6 @@ console.log('data', data)
                 <IonItem className="detail">
                   <IonTextarea
                     className="detail"
-                    // rows={7}
                     placeholder="รายละเอียด"
                     autoGrow={true}
                     name="detail"

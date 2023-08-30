@@ -73,7 +73,7 @@ const Profileedit: React.FC = () => {
             <h2> อีเมล์ : {profile.email}</h2>
           </div>
         )}
-        <IonCard className="buttonedit">
+        <IonCard className="editprofile">
           <IonButton shape="round" className="bte" routerLink="/page/แก้ไขข้อมูลส่วนตัว">
             แก้ไข
           </IonButton>

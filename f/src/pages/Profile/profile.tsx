@@ -136,7 +136,7 @@ const Profile: React.FC = () => {
     <IonPage>
       <Appbar />
       <IonContent fullscreen color="secondary">
-      <IonButton className="icon"  routerLink="/page/Profileedit" color="secondary" >
+      <IonButton className="icon"  routerLink="/page/ข้อมูลส่วนตัว" color="secondary" >
             {/* <IonIcon  icon="arrow-back-circle-outline" style={{with:"fit-content",}} ></IonIcon> */}
           </IonButton>
         <IonFab horizontal="center">
@@ -189,6 +189,7 @@ const Profile: React.FC = () => {
             </IonItem>
           </IonCard>
         </div>
+        {profile && profile.school && (
         <div>
         <IonCard className="name">
             <IonItem>
@@ -201,6 +202,7 @@ const Profile: React.FC = () => {
             </IonItem>
           </IonCard>
         </div>
+        )}
         {profile && profile.branch && (
           <div className="contentcenter">
             <IonCard className="name">

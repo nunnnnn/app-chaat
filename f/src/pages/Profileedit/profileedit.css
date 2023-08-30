@@ -11,7 +11,18 @@
    margin-right: auto;
   
 }
-/* .bte{
-  background-color: #e83c3cb5;
+.editprofile {
 
+    margin-left: auto;
+    margin-right: auto;
+    width: 7rem;
+    --box-shadow: none !important;
+    box-shadow: none;
+    background-color: #f8d874;
+    --background-activated: #ad4a4a;
+
+}
+/* .bte {
+  --background: rgb(158, 119, 119);
+  color: rgb(149, 15, 15);
 } */

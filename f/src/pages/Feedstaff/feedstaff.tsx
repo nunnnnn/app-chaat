@@ -11,7 +11,8 @@ import {
   IonButtons,
   useIonAlert,
   useIonLoading,
-  useIonToast
+  IonLoading,
+  useIonToast,
 } from "@ionic/react";
 import { useHistory, } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -26,13 +27,35 @@ const Feedstaff: React.FC = () => {
   const [roleMessage, setRoleMessage] = useState("");
   const [present, dismiss] = useIonLoading();
   const [IonToast] = useIonToast();
-
-
   const [post, setPost] =  useState<any[]>([]);
   const history = useHistory();
+  const [loadingPosts, setLoadingPosts] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
+  const [cards, setCards] = useState<any[]>([]);
+
+
+  // useEffect(() => {
+  //   API.get("/post").then((response) => {
+  //     setPost(response.data);
+  //   });
+  // }, [present, dismiss]);
+
+  // useEffect(() => {
+  //   setLoadingPosts(true); // Start loading posts
+  //   API.get("/post")
+  //     .then((response) => {
+  //       setPost(response.data);
+  //     })
+  //     .finally(() => {
+  //       setLoadingPosts(false); // Finish loading posts
+  //     });
+  // }, []);
+
   useEffect(() => {
+    setShowLoading(true);
     API.get("/post").then((response) => {
-      setPost(response.data);
+      setCards(response.data);
+      setShowLoading(false);
     });
   }, [present, dismiss]);
 
@@ -61,28 +84,53 @@ const Feedstaff: React.FC = () => {
 
 
   return (
+
     <IonPage>
+      <IonLoading
+        isOpen={showLoading}
+        spinner="crescent"
+        message={"กำลังโหลดกิจกรรม"}
+      />
       <Appbarstaff />
       <IonContent fullscreen color="secondary">
-        {post &&
-          post  
+     
+        {cards &&
+          cards  
           .slice(0)
-          .reverse().map((post: any) => (
-            <IonCard key={post.id} >
+          .reverse().map((cards: any,index) => (
+            <IonCard  key={index} >
               <div >
               <img
                 alt="Silhouette of mountains"
-                src={post.image}
+                src={cards.image}
                 style={{height: "100%",width: "100%" }}
               />
-              <IonCardHeader onClick={() => viewDetail(post._id)}>
-                <IonCardTitle className="texttitle">หัวข้อเรื่อง: {post.title}</IonCardTitle>
-                <IonCardTitle style={{ fontSize: "1rem" }}>สาขา: {post.branch}</IonCardTitle>
+              <IonCardHeader onClick={() => viewDetail(cards._id)}>
+                <IonCardTitle className="texttitle">หัวข้อเรื่อง: {cards.title}</IonCardTitle>
+                <IonCardTitle style={{ fontSize: "1rem" }}>สาขา: {cards.branch}</IonCardTitle>
               </IonCardHeader>
 
               <IonCardContent>
                 <IonToolbar mode="md">
-                  <IonButtons className="size"slot="secondary" onClick={() => editpost (post._id)} >
+                  <IonButtons className="size"slot="secondary" onClick={() =>
+                        presentAlert({
+                          cssClass: "my-css",
+                          header: "การยืนยัน",
+                          message: "คุณแน่ใจหรือไม่ว่าต้องการแก้ไขโพสต์นี้?",
+                          buttons: [
+                            {
+                              text: "ยกเลิก",
+                              role: "cancel",
+                            },
+                            {
+                              text: "แก้ไข",
+                              handler: () => editpost(cards._id), // Call the deletePost function with the post ID
+
+                            },
+                          ],
+                        })
+                      }   
+               >
                     <IonButton style={{ background:"none"}}>
                       <IonIcon
                         slot="icon-only"
@@ -105,7 +153,7 @@ const Feedstaff: React.FC = () => {
                             },
                             {
                               text: "ลบ",
-                              handler: () => deletepost(post._id), // Call the deletePost function with the post ID
+                              handler: () => deletepost(cards._id), // Call the deletePost function with the post ID
 
                             },
                           ],

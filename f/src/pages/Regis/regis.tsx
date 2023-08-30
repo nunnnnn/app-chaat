@@ -196,30 +196,18 @@ const Regis: React.FC = () => {
               </IonItem>
             </IonCard>
           </div>
-          <div className="contentcenter">
-            <IonCard className="name">
-              <IonItem>
-                <IonInput
-                  type="password"
-                  placeholder="ยืนยันรหัสผ่าน"
-                  name="password"></IonInput>
-              </IonItem>
-            </IonCard>
-          </div>
-          <IonCard className="button">
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <IonButton shape="round" type="submit">
               ลงทะเบียน
             </IonButton>
-          </IonCard>
-          <div className="contentcenter">
-            <IonCard className="me">
+ 
               <IonButton
                 fill="clear"
                 style={{ textDecorationLine: "underline" }}
                 routerLink="/Login">
                 มีแล้วเข้าสู่ระบบ
               </IonButton>
-            </IonCard>
+           
           </div>
         </form>
       </IonContent>

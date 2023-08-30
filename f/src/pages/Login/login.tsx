@@ -155,7 +155,9 @@ const LoginPage: React.FC = () => {
               เข้าสู่ระบบ
             </IonButton>
 
-            <IonButton fill="clear" routerLink="/regis">
+            <IonButton fill="clear" 
+                style={{ textDecorationLine: "underline" }}
+                routerLink="/regis">
               ลงทะเบียน
             </IonButton>
           </div>

@@ -108,7 +108,7 @@ const Profile: React.FC = () => {
       dismiss();
       const updatedData = { ...data, avatar: response.data.avatar };
       console.log(updatedData);
-      window.location.replace("/page/Profileedit");
+      window.location.replace("/page/ข้อมูลส่วนตัว");
     })
     
     .catch((error) => {
@@ -124,13 +124,11 @@ const Profile: React.FC = () => {
     });
     API.put(`/teacher/${id}`, data).then((response) => {
       dismiss();
-      history.push("/page/ฟีดข่าว", { updatedData: data });
+      history.push("/page/ข้อมูลส่วนตัว", { updatedData: data });
     }).catch((error) => {
       console.log(error);
-      // Handle error
     });
   };
-  // const [isEditing, setIsEditing] = useState(false);
  
 
   return (
@@ -139,7 +137,7 @@ const Profile: React.FC = () => {
       <Appbar />
       <IonContent fullscreen color="secondary">
       <IonButton className="icon"  routerLink="/page/Profileedit" color="secondary" >
-            <IonIcon  icon="arrow-back-circle-outline" style={{with:"fit-content",}} ></IonIcon>
+            {/* <IonIcon  icon="arrow-back-circle-outline" style={{with:"fit-content",}} ></IonIcon> */}
           </IonButton>
         <IonFab horizontal="center">
         <IonFabButton
@@ -272,7 +270,6 @@ const Profile: React.FC = () => {
               routerLink="/page/ข้อมูลส่วนตัว"
               onClick={handleTeacherProfileUpdate}>
               บันทึก
-              
             </IonButton>
           )}
         </IonCard>

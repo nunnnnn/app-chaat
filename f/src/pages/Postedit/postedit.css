@@ -11,3 +11,18 @@
 
   z-index: 1; /* ให้ข้อความอยู่ด้านหลังของรูปภาพ */
 }
+.buttonedit {
+  margin-left: auto;
+  margin-right: auto;
+  width: 7rem;
+  --box-shadow: none !important;
+  box-shadow: none;
+  background-color: #f8d874;
+  --background-activated: #30308d;
+
+  /* --background-activated: #323278; */
+}
+.bte {
+  --background: red;
+  color: black;
+}

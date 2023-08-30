@@ -31,8 +31,6 @@ import "./theme/variables.css";
 import Profile from "./pages/Profile/profile";
 import Profileedit from "./pages/Profileedit/profileedit";
 import Notification from "./pages/Notification/notification";
-import Editstaff from "./pages/Editstaff/Editstaff";
-import Editfeed from "./pages/Editfeed/editfeed";
 import Chatbot from "./pages/Chatbot/chatbot";
 import Chatroom from "./pages/Chatroom/chatroom"
 import Post from "./pages/Post/post";
@@ -92,12 +90,6 @@ const App: React.FC = () => {
             </Route>
             <Route path="/Feedstaff" exact={true}>
               <Feedstaff />
-            </Route>
-            <Route path="/Editfeed/:id" exact={true}>
-              <Editfeed />
-            </Route>
-            <Route path="/Editstaff/:id" exact={true}>
-              <Editstaff />
             </Route>
             <Route path="/Feed" exact={true} >
               <Feed />

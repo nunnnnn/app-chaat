@@ -1,15 +1,12 @@
-.frame{
+.frame2{
 width: 100%;
 height:auto;
-/* border-radius: 30px 30px 0px 0px; */
 
 /* opacity: 0.7; */
 
 /* background-color: beige; */
-border-bottom:  1px solid rgb(36, 5, 5);;
 margin: auto;
 text-align: center;
-padding: 10px;
 
 }
 .text{
@@ -34,7 +31,7 @@ padding: 10px;
 .long{
     white-space:break-spaces;
     max-width: fit-content;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 
 }
 .texttitle{
@@ -44,7 +41,6 @@ padding: 10px;
 
 .superimposed{
     border: none;
-    background-color: rgba(50, 42, 16, 0.112);
 text-align: left;
 
     /* width: 100px;

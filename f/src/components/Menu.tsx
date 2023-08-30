@@ -32,7 +32,7 @@ interface AppPage {
 
 const teacherPages: AppPage[] = [
   {
-    title: "ฟีดข่าว",
+    title: "ฟีดข่าวแอดมิน",
     url: "/page/ฟีดข่าวแอดมิน",
     iosIcon: home,
     mdIcon: home,

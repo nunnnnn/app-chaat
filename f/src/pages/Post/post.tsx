@@ -126,7 +126,7 @@ const Post: React.FC = () => {
               <IonIcon
                 className="fabbuttonupicon"
                 icon={imagesOutline}></IonIcon>
-            {showImgText && <div className="img-text">เพิ่มรูปภาพ</div>}
+            {showImgText && <div className="edit-avatar-text">เพิ่มรูปภาพ</div>}
 
               <img
                 alt="Silhouette of a person's head"

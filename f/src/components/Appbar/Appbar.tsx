@@ -81,14 +81,14 @@ const Profile: React.FC = () => {
 
   return (
     <IonHeader>
-      <IonToolbar color="primary">
+      <IonToolbar  color="primary">
         <IonFab horizontal="end">
           <IonRow>
             <IonFabButton className="fabbutton" routerLink="/page/Notification">
               <IonBadge color="danger">{count > 0 ? count : null}</IonBadge>
               <IonIcon color="light" icon="notifications-circle"></IonIcon>
             </IonFabButton>
-            <IonFabButton className="fabbutton" href="/page/Profileedit">
+            <IonFabButton className="fabbutton" href="/page/ข้อมูลส่วนตัว">
               <IonIcon color="light" icon="person-circle"></IonIcon>
             </IonFabButton>
           </IonRow>

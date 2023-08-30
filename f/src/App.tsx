@@ -44,7 +44,7 @@ import Detail from "./pages/Detail/detail";
 import Feed from "./components/Feed/feed";
 import Appbar from"./components/Appbar/Appbar";
 import Chatroom_tid from "./pages/Chatroom/chatroom_tid";
-import RegisAdmin from "./pages/Regis/regisAdmin";
+import RegisAdmin from "./pages/Regis/regisAmin";
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -63,9 +63,9 @@ const App: React.FC = () => {
             <Route path="/Login">
               <LoginPage />
             </Route>
-            <Route path="/Profile" exact={true}>
+            {/* <Route path="/Profile" exact={true}>
               <Profile />
-            </Route>
+            </Route> */}
             <Route path="/page/Notification/" exact={true}>
               <Notification />
             </Route>
@@ -84,9 +84,9 @@ const App: React.FC = () => {
             <Route path="/RegisAdmin" exact={true}>
               <RegisAdmin />
             </Route>
-            <Route path="/page/Profileedit" exact={true}>
+            {/* <Route path="/Profileedit" exact={true}>
               <Profileedit />
-            </Route>
+            </Route> */}
             <Route path="/Contact" exact={true}>
               <Contact />
             </Route>

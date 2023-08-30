@@ -159,7 +159,6 @@ const Profile: React.FC = () => {
               src={img ? img : profile && profile.avatar}
               
             />
- {/* {showEditAvatarText && <div className="edit-avatar-text"></div>} */}
           </IonFabButton>
         </IonFab>
         <div className="contentcenter">
@@ -270,7 +269,7 @@ const Profile: React.FC = () => {
             <IonButton
               className="bn"
               expand="block"
-              routerLink="/page/Profileedit"
+              routerLink="/page/ข้อมูลส่วนตัว"
               onClick={handleTeacherProfileUpdate}>
               บันทึก
               

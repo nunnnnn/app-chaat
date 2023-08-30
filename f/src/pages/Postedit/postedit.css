@@ -1,13 +1,13 @@
 .edit-img-text {
-    position: absolute;
-    top: 90%; /* ปรับตำแหน่งให้อยู่ตรงกลางแนวตั้งของรูปภาพ */
-    left: 50%; /* ปรับตำแหน่งให้อยู่ตรงกลางแนวนอนของรูปภาพ */
-    transform: translate(-50%, -50%); /* จัดให้อยู่ตรงกลางทั้งแนวนอนและแนวตั้ง */
-    background-color: rgba(0, 0, 0, 0.53);
-    color: white;
-    font-size: 14px;
-    padding: 0.3rem 1rem;
-    border-radius: 10px;
-  
-    z-index: 1; /* ให้ข้อความอยู่ด้านหลังของรูปภาพ */
-  }
+  position: absolute;
+  top: 90%; /* ปรับตำแหน่งให้อยู่ตรงกลางแนวตั้งของรูปภาพ */
+  left: 50%; /* ปรับตำแหน่งให้อยู่ตรงกลางแนวนอนของรูปภาพ */
+  transform: translate(-50%, -50%); /* จัดให้อยู่ตรงกลางทั้งแนวนอนและแนวตั้ง */
+  background-color: rgba(0, 0, 0, 0.53);
+  color: white;
+  font-size: 14px;
+  padding: 0.3rem 1rem;
+  border-radius: 10px;
+
+  z-index: 1; /* ให้ข้อความอยู่ด้านหลังของรูปภาพ */
+}

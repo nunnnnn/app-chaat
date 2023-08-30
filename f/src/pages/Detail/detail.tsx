@@ -39,7 +39,7 @@ const Detail: React.FC = () => {
     <IonPage>
       <Appbar />
       <IonContent fullscreen color="secondary">
-        <div className="frame" >
+        <div className="frame2" >
         <h3 className="text" >รายละเอียด  </h3>
          
        <img

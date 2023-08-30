@@ -6,6 +6,7 @@ import {
   IonContent,
   IonButton,
   IonLoading,
+  IonToolbar
 } from "@ionic/react";
 import Appbar from "../../components/Appbar/Appbar";
 import React, { useEffect, useState } from "react";
@@ -61,7 +62,7 @@ const Profileedit: React.FC = () => {
         </IonFab>
         
         {profile && (
-          <div className="color" style={{background:"	rgb(0 0 204 / 20%)",boxShadow:"#323278 5px 5px, #30308d 10px 10px, 15px 15px" , }} >
+          <div className="color" style={{background:"##f5f6f933" }} >
             <h2 className="profilename">ชื่อ : {profile.name}</h2>
             <h2> 
               {profile.school
@@ -73,7 +74,7 @@ const Profileedit: React.FC = () => {
           </div>
         )}
         <IonCard className="buttonedit">
-          <IonButton shape="round" className="bte" routerLink="/Profile">
+          <IonButton shape="round" className="bte" routerLink="/page/แก้ไขข้อมูลส่วนตัว">
             แก้ไข
           </IonButton>
         </IonCard>

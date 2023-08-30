@@ -1,35 +1,4 @@
-// import { IonContent, IonPage } from "@ionic/react";
-// import Appbar from "../components/Appbar/Appbar";
-// import Feed from "../components/Feed/feed"
-// import Feedstaff from "./Feedstaff/feedstaff";
-// import { useParams } from "react-router";
-// import ExploreContainer from "../components/ExploreContainer";
-// import Appbarstaff from "../components/Appbarstaff/Appbarstaff";
-// import "./Page.css";
-// import Post from "./Post/post";
-// import Contact from "./Contact/contact";
-// import Postedit from "./Postedit/postedit";
 
-// const Page: React.FC = () => {
-//   const { name } = useParams<{ name: string }>();
-//   const staff = ["โพสต์"];
-
-//   return (
-//     <IonPage>
-//       {staff.includes(name) ? <Appbarstaff /> : <Appbar />}
-
-//       <IonContent fullscreen color="secondary">
-//         {name === "ฟีดข่าว" && <Feed />}
-//         {name === "ฟีดข่าวแอดมิน" && <Feedstaff />}
-//         {name === "โพสต์" && <Post />}
-//         {name === "แก้ไขโพสต์" && <Postedit />}
-//         {name === "ติดต่อเรา" && <Contact />}
-//       </IonContent>
-//     </IonPage>
-//   );
-// };
-
-// export default Page;
 import { IonContent, IonPage } from "@ionic/react";
 import Appbar from "../components/Appbar/Appbar";
 import Feed from "../components/Feed/feed"
@@ -43,11 +12,13 @@ import Chactbot from "./Chatbot/chatbot";
 import Chatroom from "./Chatroom/chatroom";
 import DriectMessages from "./Driect/driect_message";
 import Profileedit from "./Profileedit/profileedit";
-// import Postedit from "./Postedit/postedit";
+import Profile from "./Profile/profile";
+import Notification from"./Notification/notification";
+import Detail from "./Detail/detail";
 
 const Page: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const staff = ["โพสต์","ฟีดข่าวแอดมิน","ตอบกลับข้อความ"];
+  const staff = ["โพสต์","ฟีดข่าวแอดมิน","ตอบกลับข้อความ","ข้อมูลส่วนตัว","แก้ไขข้อมูลส่วนตัว","รายละเอียด"];
 
   return (
     <IonPage>
@@ -55,7 +26,6 @@ const Page: React.FC = () => {
 
       <IonContent fullscreen color="secondary">
         {name === "ฟีดข่าว" && <Feed />}
-        {name === "ฟีดข่าวแอดมิน" && <Feedstaff />}
         {name === "โพสต์" && <Post />}
         {name === "ติดต่อเรา" && <Contact />}
         {name === "แชทตอบอัตโนมัติ" && <Chactbot />}
@@ -63,6 +33,12 @@ const Page: React.FC = () => {
         {name === "ตอบกลับข้อความ" && <DriectMessages />}
         {name === "ฟีดข่าวแอดมิน" && <Feedstaff />}
         {name === "ข้อมูลส่วนตัว" && <Profileedit />}
+        {name === "แก้ไขข้อมูลส่วนตัว" && <Profile />}
+        {name === "แจ้งเตือน" && <Notification />}
+        {name === "รายละเอียด" && <Detail />}
+
+
+
 
 
 

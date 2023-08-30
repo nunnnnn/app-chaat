@@ -168,7 +168,7 @@ console.log('data', data)
               takePhoto();
               setShowEditImgText(true);
             }}>
-          <div className="edit-avatar-text" >แก้ไขรูปภาพ</div>
+          <div className="edit-img-text" >แก้ไขรูปภาพ</div>
 
               <IonIcon className="fabbuttonupicon" icon={addCircle}></IonIcon>
               {showEditImgText && <div className="edit-img-text">แก้ไขรูปภาพ</div>}
@@ -176,7 +176,6 @@ console.log('data', data)
                 alt="Silhouette of a person's head"
                 src={img ? img : text.image || data.image}
               />
-              {/* </IonAvatar> */}
             </IonFabButton>
           </IonFab>
 

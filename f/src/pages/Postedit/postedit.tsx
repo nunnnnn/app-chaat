@@ -48,17 +48,15 @@ const Postedit: React.FC = () => {
     teacher_id: "",
     create_at: "" as any,
   });
-  const formattedDate = dayjs(data.create_at)
-    .locale("th")
-    .format("DD/MM/YYYY HH:mm");
+  // const formattedDate = dayjs(data.create_at)
+  //   .locale("th")
+  //   .format("DD/MM/YYYY HH:mm");
 
   useEffect(() => {
     API.get(`/post/${id}`).then((response) => {
       setData(response.data);
     });
   }, [id]);
-
-  // console.log(data);
 
   const [text, setText] = useState({
     image: "",

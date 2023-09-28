@@ -20,15 +20,9 @@ import API from "../../api/useApi";
 import Logo from"../../assets/sci.png"
 
 const LoginPage: React.FC = () => {
-  // const [isTouched, setIsTouched] = useState(false);
-  // const [isValid, setIsValid] = useState<boolean>();
   const [present, dismiss] = useIonLoading();
   const [IonToast] = useIonToast();
   const history = useHistory();
-  // const [data, setData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const showToast = (message: any) => {
@@ -46,9 +40,6 @@ const LoginPage: React.FC = () => {
     }
   }, []);
 
-  // const handleChange = (event: any) => {
-  //   setData({ ...data, [event.target.name]: [event.target.value] });
-  // };
 
   const handleEmailChange = (event: CustomEvent) => {
     setEmail(event.detail.value);
@@ -59,12 +50,11 @@ const LoginPage: React.FC = () => {
   };
 
   const validateForm = () => {
-    // const { email, password } = data;
     if (email === "") {
-      showToast("Email and Password is required.");
+      showToast("จำเป็นต้องมีอีเมล์และรหัสผ่าน.");
       return false;
     } else if (password === "") {
-      showToast("Email and Password is required.");
+      showToast("จำเป็นต้องมีอีเมล์และรหัสผ่าน.");
       return false;
     }
     return true;
@@ -73,9 +63,6 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
-      // const { email, password } = data;
-      // console.log('Email:', email);
-      // console.log('Password:', password);
       present({
         message: "กำลังเข้าสู่ระบบ",
         spinner: "circles",

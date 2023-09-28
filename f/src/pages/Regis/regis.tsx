@@ -50,17 +50,27 @@ const Regis: React.FC = () => {
     });
   };
   const handleValidation = () => {
-    const { surname, email, password } = inputs;
+    const { surname,lastname,branch,school, email, password } = inputs;
     if (surname.length < 3) {
       showToast("ชื่อผู้ใช้ควรมีความยาวมากกว่า 3 ตัวอักษร");
       return false;
-    } else if (password.length < 8) {
+    } else if (lastname.length < 3) {
+      showToast("นามสกุลผู้ใช้ควรมีความยาวมากกว่า 3 ตัวอักษร");
+      return false;
+    } else if (school.length < 8) {
+      showToast("จำเป็นต้องใส่ข้อมูล");
+      return false;
+    }else if (branch.length < 8) {
+      showToast("จำเป็นต้องใส่ข้อมูล");
+      return false;
+    }  else if (email === "") {
+      showToast("จำเป็นต้องมีอีเมล์.");
+      return false;
+    }else if (password.length < 8) {
       showToast("รหัสผ่านควรมีความยาวเท่ากับหรือมากกว่า 8 ตัวอักษร");
       return false;
-    } else if (email === "") {
-      showToast("Email is required.");
-      return false;
-    }
+    } 
+
     return true;
   };
 

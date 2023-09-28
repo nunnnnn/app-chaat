@@ -34,23 +34,6 @@ const Feedstaff: React.FC = () => {
   const [cards, setCards] = useState<any[]>([]);
 
 
-  // useEffect(() => {
-  //   API.get("/post").then((response) => {
-  //     setPost(response.data);
-  //   });
-  // }, [present, dismiss]);
-
-  // useEffect(() => {
-  //   setLoadingPosts(true); // Start loading posts
-  //   API.get("/post")
-  //     .then((response) => {
-  //       setPost(response.data);
-  //     })
-  //     .finally(() => {
-  //       setLoadingPosts(false); // Finish loading posts
-  //     });
-  // }, []);
-
   useEffect(() => {
     setShowLoading(true);
     API.get("/post").then((response) => {

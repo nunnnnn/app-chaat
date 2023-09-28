@@ -129,9 +129,7 @@ const Chactbot: React.FC = () => {
               {mes.name == "bot" ? (
                 <div>
                   {details.map((det: any, indexx: number) => (
-                    // console.log('payload',det.payload),
                     <div className="link-wrapper  " key={indexx}>
-                      {/* <p>{det.messages}</p> */}
                       {det.messages && det.messages == mes.text && (
                         <div>
                           {det.payload &&
@@ -139,8 +137,6 @@ const Chactbot: React.FC = () => {
                               <div key={indx}>
                                 {dett.map((detail: any, indexxx: number) => (
                                   <div className="link-wrapper  " key={indexxx}>
-                                    {/* {detai.map((detail: any, indexxxx: number) => (
-                                <div className="link-wrapper  " key={indexxxx}> */}
                                     {detail.type && detail.type == "info" && (
                                       <IonCard
                                         href={detail.actionLink}
@@ -165,9 +161,6 @@ const Chactbot: React.FC = () => {
                                         </IonRow>
                                       </IonCard>
                                     )}
-
-                                    {/* </div>
-                              ))} */}
                                   </div>
                                 ))}
                               </div>

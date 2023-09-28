@@ -47,8 +47,8 @@ const Profile: React.FC = () => {
             avatar: response.data.avatar,
             surname: response.data.name.split(" ")[0],
             lastname: response.data.name.split(" ")[1],
-            school: response.data.school,
-            branch: response.data.branch,
+            // school: response.data.school,
+            // branch: response.data.branch,
           }));
         })
         .catch((error) => {

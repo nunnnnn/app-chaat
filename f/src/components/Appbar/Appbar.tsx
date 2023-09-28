@@ -40,7 +40,7 @@ const Profile: React.FC = () => {
       <IonToolbar  color="primary">
         <IonFab horizontal="end">
           <IonRow>
-            <IonFabButton className="fabbutton" routerLink="/page/Notification">
+            <IonFabButton className="fabbutton" routerLink="/page/แจ้งเตือน">
               <IonBadge color="danger">{count > 0 ? count : null}</IonBadge>
               <IonIcon color="light" icon="notifications-circle"></IonIcon>
             </IonFabButton>

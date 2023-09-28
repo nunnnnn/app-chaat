@@ -9,7 +9,7 @@ module.exports.login = async (req, res, next) => {
     if (!user) {
       user = await Teacher.findOne({ email });
       if (!user) {
-        return res.json({ msg: "Email not found", status: false });
+        return res.json({ msg: "อีเมล์ไม่ถูกต้อง", status: false });
       }
     }
     const isPasswordValid = await bcrypt.compare(
@@ -17,7 +17,7 @@ module.exports.login = async (req, res, next) => {
       String(user.password)
     );
     if (!isPasswordValid) {
-      return res.json({ msg: "Invalid Password", status: false });
+      return res.json({ msg: "รหัสผ่านไม่ถูกต้อง", status: false });
     }
 
     delete user.password;

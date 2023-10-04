@@ -10,6 +10,7 @@ import {
 import Appbar from "../../components/Appbar/Appbar";
 import React, { useState, useRef, useEffect } from "react";
 import "./chatbot.css";
+import Logo from"../../assets/sci.png"
 import axios from "axios";
 
 const suggestions = [
@@ -17,10 +18,7 @@ const suggestions = [
   "เกี่ยวกับmytcasc",
   "ปริญญาตรีมีกี่สาขา",
   "ระเบียบมหาวิทยาลัย,หอพักหอใน",
-  
- 
 ];
-
 const Chactbot: React.FC = () => {
   const [messages, setMessages] = useState<any>([]);
   const [details, setDetails] = useState<any>([]);
@@ -113,8 +111,10 @@ const Chactbot: React.FC = () => {
           <div className={`chat chat-${mes.fromself}`} key={index}>
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/192/192/people" />{" "}
-                {/*ไม่มีรูปในเว็บ */}
+              <img
+              src={Logo} 
+              alt="Logo"
+            />
               </div>
             </div>
 

@@ -242,6 +242,9 @@ console.log('data', data)
                   <IonSelectOption value="สาขาวิชาเทคโนโลยียางและพอลิเมอร์">
                     สาขาวิชาเทคโนโลยียางและพอลิเมอร์
                   </IonSelectOption>
+                  <IonSelectOption value="ทุกสาขา">
+                    ทุกสาขา
+                  </IonSelectOption>
                 </IonSelect>
               </IonItem>
             </IonCard>

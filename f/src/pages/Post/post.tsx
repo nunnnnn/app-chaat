@@ -83,7 +83,7 @@ const Post: React.FC = () => {
       showToast("จำเป็นต้องระบุหัวข้อเรื่อง.");
       return false;
     } else if (branch === "") {
-      showToast("จำเป็นต้องระบุ.");
+      showToast("จำเป็นต้องระบุสาขา.");
       return false;
     } else if (detail === "") {
       showToast("จำเป็นต้องระบุรายละเอียด.");

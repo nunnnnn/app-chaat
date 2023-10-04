@@ -20,7 +20,7 @@ const Notification: React.FC = () => {
   const [present, dismiss] = useIonLoading();
   const [showLoading, setShowLoading] = useState(false);
   const history = useHistory();
-  // const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<any[]>([]);
 
 
   const viewDetail = (id: string) => {
@@ -28,18 +28,16 @@ const Notification: React.FC = () => {
   };
   useEffect(() => {
     setShowLoading(true);
-    const id = JSON.parse(localStorage.getItem("SID")!)._id;
-    API.get(`/student/${id}`).then((res) => {
-      API.get("/post").then((response) => {
-        const data = response.data.filter(
-          (item: any) => item.branch === res.data.branch
-        );
-        setPost(data);
+    viwePost()
         setShowLoading(false);
-      });
-    });
   }, [present, dismiss]);
 
+  const viwePost = async () => {
+    await API.get("/post").then((response)=>{
+      setCards(response.data);
+    });
+  }
+  
   return (
     <IonPage>
       <Appbar />

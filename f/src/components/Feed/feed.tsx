@@ -27,6 +27,7 @@ const Feed: React.FC = () => {
     setShowLoading(true);
     API.get("/post").then((response) => {
       setCards(response.data);
+      viwePost()
       setShowLoading(false);
     });
   }, [present, dismiss]);
@@ -34,7 +35,11 @@ const Feed: React.FC = () => {
 const viewDetail = (id: string) => {
     history.push(`/detail/${id}`);
   };
-  
+const viwePost = async () => {
+    await API.get("/post").then((response)=>{
+      setCards(response.data);
+    });
+  }
   return (
     <div>
       <IonLoading

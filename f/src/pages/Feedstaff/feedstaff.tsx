@@ -39,6 +39,7 @@ const Feedstaff: React.FC = () => {
     API.get("/post").then((response) => {
       setCards(response.data);
       setShowLoading(false);
+      viwePost()
     });
   }, [present, dismiss]);
 
@@ -58,12 +59,16 @@ const Feedstaff: React.FC = () => {
     API.delete(`/post/${postId}`).then((response) => {
       dismiss();
       console.log("Post deleted:", postId);
-      setPost((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+      setCards((prevPosts) => prevPosts.filter((post) => post._id !== postId));
     }).catch((error) => {
       console.error("Error deleting post:", error);
     });
   };
-
+  const viwePost = async () => {
+    await API.get("/post").then((response)=>{
+      setCards(response.data);
+    });
+  }
 
 
   return (

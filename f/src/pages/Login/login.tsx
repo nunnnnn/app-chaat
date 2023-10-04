@@ -121,8 +121,6 @@ const LoginPage: React.FC = () => {
                   name="email"
                   onIonChange={handleEmailChange}>
                   </IonInput>
-                {/* <IonNote slot="helper">Enter a valid email</IonNote>
-              <IonNote slot="error">Invalid email</IonNote> */}
               </IonItem>
             </IonCard>
           </div>

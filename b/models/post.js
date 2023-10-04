@@ -15,7 +15,7 @@ const PostSchema = mongoose.Schema({
   },
   attach_link: {
     type: String,
-    required: true,
+    required: false,
   },
   detail: {
     type: String,
